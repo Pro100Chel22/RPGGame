@@ -10,7 +10,7 @@ namespace RPGgame
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("TEST");
+            Console.WriteLine("TESTicvbjk");
             Console.ReadLine();
         }
     }
