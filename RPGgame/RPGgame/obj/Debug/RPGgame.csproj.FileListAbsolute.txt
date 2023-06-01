@@ -1,0 +1,8 @@
+C:\oop\OOP-OOP-2023-OOP2023Team20\RPGgame\RPGgame\bin\Debug\RPGgame.exe.config
+C:\oop\OOP-OOP-2023-OOP2023Team20\RPGgame\RPGgame\bin\Debug\RPGgame.exe
+C:\oop\OOP-OOP-2023-OOP2023Team20\RPGgame\RPGgame\bin\Debug\RPGgame.pdb
+C:\oop\OOP-OOP-2023-OOP2023Team20\RPGgame\RPGgame\obj\Debug\RPGgame.csproj.AssemblyReference.cache
+C:\oop\OOP-OOP-2023-OOP2023Team20\RPGgame\RPGgame\obj\Debug\RPGgame.csproj.SuggestedBindingRedirects.cache
+C:\oop\OOP-OOP-2023-OOP2023Team20\RPGgame\RPGgame\obj\Debug\RPGgame.csproj.CoreCompileInputs.cache
+C:\oop\OOP-OOP-2023-OOP2023Team20\RPGgame\RPGgame\obj\Debug\RPGgame.exe
+C:\oop\OOP-OOP-2023-OOP2023Team20\RPGgame\RPGgame\obj\Debug\RPGgame.pdb
