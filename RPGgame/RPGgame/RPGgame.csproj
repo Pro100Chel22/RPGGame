@@ -55,8 +55,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\Engine.cs" />
+    <Compile Include="Modules\Entity\Entity.cs" />
+    <Compile Include="Modules\Event.cs" />
+    <Compile Include="Modules\Item\Effect.cs" />
+    <Compile Include="Modules\Item\Item.cs" />
+    <Compile Include="Modules\Storage\Chest.cs" />
+    <Compile Include="Modules\Storage\Storage.cs" />
+    <Compile Include="Modules\UI\HUD.cs" />
+    <Compile Include="Modules\UI\InteractionWindow.cs" />
+    <Compile Include="Modules\UI\InventoryWindow.cs" />
+    <Compile Include="Modules\UI\World.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Modules\Scene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -80,6 +92,9 @@
     <Content Include="OpenTK.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dependencies\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
