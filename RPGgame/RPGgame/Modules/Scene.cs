@@ -33,7 +33,7 @@ namespace RPGgame
 
         public void Update(float dTime, Events e)
         {
-            if (e.getButtonOfMouse(MouseEvent.ButtonLeft))
+            if (e.getButtonOfKeyboard(KeyboardEvent.ButtonA))
             {
                 s.Position = (Vector2f)e.mousePosition;
             }
