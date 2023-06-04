@@ -1,5 +1,5 @@
 ﻿
-namespace RPGgame.Modules.Entity
+namespace RPGgame.Modules.Entitys
 {
     internal class Entity
     {

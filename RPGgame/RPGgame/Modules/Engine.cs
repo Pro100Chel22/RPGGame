@@ -16,15 +16,11 @@ namespace RPGgame
         public Engine()
         {
             win = new RenderWindow(new VideoMode(600, 600), "SFML");
-            scene = new Scene(win);
-            engineEvents = new Events();
-
-            win.SetVerticalSyncEnabled(true);
+            engineEvents = new Events(win);
+            scene = new Scene(win, engineEvents); 
             win.Closed += (object obj, EventArgs e) => win.Close();
-            win.KeyPressed += (object obj, KeyEventArgs e) => EngineKeyboardEvent(obj, e, true);
-            win.KeyReleased += (object obj, KeyEventArgs e) => EngineKeyboardEvent(obj, e, false);
-            win.MouseButtonPressed += (object obj, MouseButtonEventArgs e) => EngineMouseEvent(obj, e, true);
-            win.MouseButtonReleased += (object obj, MouseButtonEventArgs e) => EngineMouseEvent(obj, e, false);
+
+            win.SetVerticalSyncEnabled(true);     
         }
 
         public void Start()
@@ -36,9 +32,8 @@ namespace RPGgame
                 float dTime = clock.Restart().AsSeconds();
 
                 win.DispatchEvents();
-                engineEvents.mousePosition = Mouse.GetPosition(win);
 
-                scene.Update(dTime, engineEvents);
+                scene.Update(dTime);
 
                 win.Clear();
 
@@ -51,53 +46,6 @@ namespace RPGgame
         public void Stop()
         {
             win.SetActive(false);
-        }
-
-        private void EngineKeyboardEvent(object obj, KeyEventArgs e, bool pressed)
-        {
-            switch (e.Code)
-            {
-                case Keyboard.Key.A:
-                    engineEvents.setButtonOfKeyboard(KeyboardEvent.ButtonA, pressed);
-                    break;
-                case Keyboard.Key.W:
-                    engineEvents.setButtonOfKeyboard(KeyboardEvent.ButtonW, pressed);
-                    break;
-                case Keyboard.Key.S:
-                    engineEvents.setButtonOfKeyboard(KeyboardEvent.ButtonS, pressed);
-                    break;
-                case Keyboard.Key.D:
-                    engineEvents.setButtonOfKeyboard(KeyboardEvent.ButtonD, pressed);
-                    break;
-                case Keyboard.Key.Space:
-                    engineEvents.setButtonOfKeyboard(KeyboardEvent.ButtonSpace, pressed);
-                    break;
-                case Keyboard.Key.E:
-                    engineEvents.setButtonOfKeyboard(KeyboardEvent.ButtonE, pressed);
-                    break;
-                case Keyboard.Key.I:
-                    engineEvents.setButtonOfKeyboard(KeyboardEvent.ButtonI, pressed);
-                    break;
-                case Keyboard.Key.Escape:
-                    engineEvents.setButtonOfKeyboard(KeyboardEvent.ButtonEscape, pressed);
-                    break;
-            }
-        }
-
-        private void EngineMouseEvent(object obj, MouseButtonEventArgs e, bool pressed)
-        {
-            switch (e.Button)
-            {
-                case Mouse.Button.Left:
-                    engineEvents.setButtonOfMouse(MouseEvent.ButtonLeft, pressed);
-                    break;
-                case Mouse.Button.Right:
-                    engineEvents.setButtonOfMouse(MouseEvent.ButtonRight, pressed);
-                    break;
-                case Mouse.Button.Middle:
-                    engineEvents.setButtonOfMouse(MouseEvent.ButtonWheel, pressed);
-                    break;
-            }
         }
     }
 }

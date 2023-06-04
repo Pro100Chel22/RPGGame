@@ -1,5 +1,5 @@
 ﻿
-namespace RPGgame.Modules.Item
+namespace RPGgame.Modules.Items
 {
     internal class Effect
     {

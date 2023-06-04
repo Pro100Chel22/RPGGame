@@ -1,5 +1,5 @@
 ﻿
-namespace RPGgame.Modules.Storage
+namespace RPGgame.Modules.Storages
 {
     internal class Storage
     {

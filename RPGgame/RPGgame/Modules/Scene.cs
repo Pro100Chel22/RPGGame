@@ -1,5 +1,6 @@
 ﻿
 using RPGgame.Modules;
+using RPGgame.Modules.UI;
 using SFML.Graphics;
 using SFML.System;
 using System;
@@ -18,6 +19,8 @@ namespace RPGgame
     {
         private bool isActive;
         private RenderWindow renderIn;
+        private Events sceneEvents;
+        private World world;
 
         RectangleShape s = new RectangleShape
         {
@@ -25,17 +28,19 @@ namespace RPGgame
             FillColor = Color.White,
         };
 
-        public Scene(RenderWindow renderIn)
+        public Scene(RenderWindow renderIn, Events sceneEvents)
         {
             isActive = true;
             this.renderIn = renderIn;
+            this.sceneEvents = sceneEvents;
+            world = new World(this);
         }
 
-        public void Update(float dTime, Events e)
+        public void Update(float dTime)
         {
-            if (e.getButtonOfKeyboard(KeyboardEvent.ButtonA))
+            if (sceneEvents.getButtonOfKeyboard(KeyboardEvent.ButtonA))
             {
-                s.Position = (Vector2f)e.mousePosition;
+                s.Position = (Vector2f)sceneEvents.getMousePosition();
             }
         }
 

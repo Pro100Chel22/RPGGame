@@ -1,6 +1,7 @@
 ﻿
+using SFML.Graphics;
 using SFML.System;
-using System;
+using SFML.Window;
 
 namespace RPGgame.Modules
 {
@@ -25,15 +26,25 @@ namespace RPGgame.Modules
 
     internal class Events
     {
-        public Vector2i mousePosition { get; set; }
         private bool[] buttomOfMouse;
         private bool[] buttomOfKeyboard;
+        private RenderWindow eventsIn;
 
-        public Events()
+        public Events(RenderWindow eventsIn)
         {
-            mousePosition = new Vector2i();
             buttomOfMouse = new bool[3];
             buttomOfKeyboard = new bool[8];
+            this.eventsIn = eventsIn;
+            
+            this.eventsIn.KeyPressed += (object obj, KeyEventArgs e) => UpdateKeyboardEvent(obj, e, true);
+            this.eventsIn.KeyReleased += (object obj, KeyEventArgs e) => UpdateKeyboardEvent(obj, e, false);
+            this.eventsIn.MouseButtonPressed += (object obj, MouseButtonEventArgs e) => UpdateMouseEvent(obj, e, true);
+            this.eventsIn.MouseButtonReleased += (object obj, MouseButtonEventArgs e) => UpdateMouseEvent(obj, e, false);
+        }
+
+        public Vector2i getMousePosition()
+        {
+            return Mouse.GetPosition(eventsIn);
         }
 
         public bool getButtonOfMouse(MouseEvent e)
@@ -46,14 +57,61 @@ namespace RPGgame.Modules
             return buttomOfKeyboard[(int)e];
         }
 
-        public void setButtonOfMouse(MouseEvent e, bool pressed)
+        private void setButtonOfMouse(MouseEvent e, bool pressed)
         {
             buttomOfMouse[(int)e] = pressed;
         }
 
-        public void setButtonOfKeyboard(KeyboardEvent e, bool pressed)
+        private void setButtonOfKeyboard(KeyboardEvent e, bool pressed)
         {
             buttomOfKeyboard[(int)e] = pressed;
+        }
+
+        private void UpdateKeyboardEvent(object obj, KeyEventArgs e, bool pressed)
+        {
+            switch (e.Code)
+            {
+                case Keyboard.Key.A:
+                    setButtonOfKeyboard(KeyboardEvent.ButtonA, pressed);
+                    break;
+                case Keyboard.Key.W:
+                    setButtonOfKeyboard(KeyboardEvent.ButtonW, pressed);
+                    break;
+                case Keyboard.Key.S:
+                    setButtonOfKeyboard(KeyboardEvent.ButtonS, pressed);
+                    break;
+                case Keyboard.Key.D:
+                    setButtonOfKeyboard(KeyboardEvent.ButtonD, pressed);
+                    break;
+                case Keyboard.Key.Space:
+                    setButtonOfKeyboard(KeyboardEvent.ButtonSpace, pressed);
+                    break;
+                case Keyboard.Key.E:
+                    setButtonOfKeyboard(KeyboardEvent.ButtonE, pressed);
+                    break;
+                case Keyboard.Key.I:
+                    setButtonOfKeyboard(KeyboardEvent.ButtonI, pressed);
+                    break;
+                case Keyboard.Key.Escape:
+                    setButtonOfKeyboard(KeyboardEvent.ButtonEscape, pressed);
+                    break;
+            }
+        }
+
+        private void UpdateMouseEvent(object obj, MouseButtonEventArgs e, bool pressed)
+        {
+            switch (e.Button)
+            {
+                case Mouse.Button.Left:
+                    setButtonOfMouse(MouseEvent.ButtonLeft, pressed);
+                    break;
+                case Mouse.Button.Right:
+                    setButtonOfMouse(MouseEvent.ButtonRight, pressed);
+                    break;
+                case Mouse.Button.Middle:
+                    setButtonOfMouse(MouseEvent.ButtonWheel, pressed);
+                    break;
+            }
         }
     }
 }
