@@ -28,19 +28,40 @@ namespace RPGgame.Modules.UI
             LoadWorldMap map = new LoadWorldMap("Resources\\Map");
         }
 
-        public void addDynamicAmmunition() // DynamicAmmunitions
+        public void AddDynamicAmmunition() // DynamicAmmunitions
         {
 
         }
 
-        public void update(float dTime)
+        RectangleShape s = new RectangleShape
         {
+            Size = new Vector2f(100, 100),
+            FillColor = Color.White,
+        };
 
+        public void Update(float dTime)
+        {
+            if (scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonA))
+            {
+                s.Position += new Vector2f(-200.0f * dTime, 0);
+            }
+            if(scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonD))
+            {
+                s.Position += new Vector2f(200.0f * dTime, 0);
+            }
+            if (scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonW))
+            {
+                s.Position += new Vector2f(0, -200.0f * dTime);
+            }
+            if (scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonS))
+            {
+                s.Position += new Vector2f(0, 200.0f * dTime);
+            }
         }
 
-        public void draw(RenderWindow renderIn)
+        public void Draw(RenderWindow renderIn)
         {
-
+            renderIn.Draw(s);
         }
     }
 

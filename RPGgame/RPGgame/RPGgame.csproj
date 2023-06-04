@@ -89,7 +89,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Modules\Resources\Map\GridCollisions.png" />
-    <None Include="Modules\Resources\Map\Positions" />
+    <Content Include="Modules\Resources\Map\Config.txt" />
     <Content Include="Modules\Resources\Map\Textur.png" />
     <Content Include="openal32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

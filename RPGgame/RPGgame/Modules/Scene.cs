@@ -19,34 +19,25 @@ namespace RPGgame
     {
         private bool isActive;
         private RenderWindow renderIn;
-        private Events sceneEvents;
+        public Events events { get; private set; }
         private World world;
-
-        RectangleShape s = new RectangleShape
-        {
-            Size = new Vector2f(100, 100),
-            FillColor = Color.White,
-        };
 
         public Scene(RenderWindow renderIn, Events sceneEvents)
         {
             isActive = true;
             this.renderIn = renderIn;
-            this.sceneEvents = sceneEvents;
+            this.events = sceneEvents;
             world = new World(this);
         }
 
         public void Update(float dTime)
         {
-            if (sceneEvents.getButtonOfKeyboard(KeyboardEvent.ButtonA))
-            {
-                s.Position = (Vector2f)sceneEvents.getMousePosition();
-            }
+            world.Update(dTime);
         }
 
         public void Draw()
         {
-            renderIn.Draw(s);
+            world.Draw(renderIn);
         }
 
         public void Pause()
