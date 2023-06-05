@@ -15,7 +15,7 @@ namespace RPGgame
 
         public Engine()
         {
-            win = new RenderWindow(new VideoMode(600, 600), "SFML");
+            win = new RenderWindow(new VideoMode(1152, 648), "SFML");
             engineEvents = new Events(win);
             scene = new Scene(win, engineEvents); 
             win.Closed += (object obj, EventArgs e) => win.Close();
@@ -42,7 +42,6 @@ namespace RPGgame
                 win.Display();
             }
         }
-
         public void Stop()
         {
             win.SetActive(false);

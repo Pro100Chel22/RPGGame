@@ -3,6 +3,8 @@ using RPGgame.Modules.Storages;
 using RPGgame.Modules.Entitys;
 using SFML.Graphics;
 using SFML.System;
+using System;
+using System.IO;
 
 namespace RPGgame.Modules.UI
 {
@@ -14,24 +16,8 @@ namespace RPGgame.Modules.UI
         private Entity[] mobs;
         private Chest[] chests;
         private Sprite background;
+        private Texture tx;
         // private DynamicAmmunition[] dynamicAmmunitions;
-
-        public World(Scene scene)
-        {
-            this.scene = scene;
-            //gridCollisions = new bool[,] { { true, true }, { false, false } };
-            //player = new Entity();
-            //mobs = new Entity[0];
-            //chests = new Chest[0];
-            //background = new Sprite();
-            //// dynamicAmmunitions = new DynamicAmmunitions[0]
-            LoadWorldMap map = new LoadWorldMap("Resources\\Map");
-        }
-
-        public void AddDynamicAmmunition() // DynamicAmmunitions
-        {
-
-        }
 
         RectangleShape s = new RectangleShape
         {
@@ -39,13 +25,34 @@ namespace RPGgame.Modules.UI
             FillColor = Color.White,
         };
 
+        public World(Scene scene)
+        {
+            this.scene = scene;
+            //player = new Entity();
+            //mobs = new Entity[0];
+            //chests = new Chest[0];            
+            // dynamicAmmunitions = new DynamicAmmunitions[0]
+            LoadWorldMap map = new LoadWorldMap("Resources\\Map");
+
+            gridCollisions = map.gridCollisions;
+            background = map.background;
+
+            //Console.WriteLine(map.player);
+            //Console.WriteLine(map.mobs);
+            //Console.WriteLine(map.chests);
+        }
+
+        public void AddDynamicAmmunition() // DynamicAmmunitions
+        {
+            throw new Exception("AddDynamicAmmunition недоступен, так как функция не реализована");
+        }
         public void Update(float dTime)
         {
             if (scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonA))
             {
                 s.Position += new Vector2f(-200.0f * dTime, 0);
             }
-            if(scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonD))
+            if (scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonD))
             {
                 s.Position += new Vector2f(200.0f * dTime, 0);
             }
@@ -58,34 +65,10 @@ namespace RPGgame.Modules.UI
                 s.Position += new Vector2f(0, 200.0f * dTime);
             }
         }
-
         public void Draw(RenderWindow renderIn)
         {
+            renderIn.Draw(background);
             renderIn.Draw(s);
         }
-    }
-
-    class LoadWorldMap
-    {
-        public bool[,] gridCollisions { get; private set; }
-        public ConfigMob[] mobs { get; private set; }
-        public Vector2f[] chests { get; private set; }
-        public Vector2f player { get; private set; }
-        public Sprite background { get; private set; }
-
-        public LoadWorldMap(string path)
-        {
-            gridCollisions = new bool[,] { { true, true }, { false, false } };
-            player = new Vector2f();
-            mobs = new ConfigMob[0];
-            chests = new Vector2f[0];
-            background = new Sprite();
-        }
-    }
-
-    struct ConfigMob
-    {
-        Vector2f pos;
-        int type;
     }
 }

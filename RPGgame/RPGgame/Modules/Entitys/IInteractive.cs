@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGgame.Modules.Storages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace RPGgame.Modules.Entitys
 {
     internal interface IInteractive
     {
+        MainEquipments GetMainEquipments();
+        Behaviour GetBehaviour();
+        Storage GetInventory();
+        int GetMoney();
+        void SetMoney(int Money);
     }
 }

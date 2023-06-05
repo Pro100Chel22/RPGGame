@@ -46,27 +46,22 @@ namespace RPGgame.Modules
         {
             return Mouse.GetPosition(eventsIn);
         }
-
         public bool getButtonOfMouse(MouseEvent e)
         {
             return buttomOfMouse[(int)e];
         }
-
         public bool getButtonOfKeyboard(KeyboardEvent e)
         {
             return buttomOfKeyboard[(int)e];
         }
-
         private void setButtonOfMouse(MouseEvent e, bool pressed)
         {
             buttomOfMouse[(int)e] = pressed;
         }
-
         private void setButtonOfKeyboard(KeyboardEvent e, bool pressed)
         {
             buttomOfKeyboard[(int)e] = pressed;
         }
-
         private void UpdateKeyboardEvent(object obj, KeyEventArgs e, bool pressed)
         {
             switch (e.Code)
@@ -97,7 +92,6 @@ namespace RPGgame.Modules
                     break;
             }
         }
-
         private void UpdateMouseEvent(object obj, MouseButtonEventArgs e, bool pressed)
         {
             switch (e.Button)

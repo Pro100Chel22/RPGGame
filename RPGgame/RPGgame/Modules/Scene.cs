@@ -34,23 +34,19 @@ namespace RPGgame
         {
             world.Update(dTime);
         }
-
         public void Draw()
         {
             world.Draw(renderIn);
         }
-
         public void Pause()
         {
             isActive = false;
         }
-
         public void Resume()
         {
             isActive = true;
         }
-
-        public void SetConfig(Config config) 
+        public void SetConfig(Config config)
         {
             throw new Exception("SetConfig недоступен, так как функция не реализована");
 

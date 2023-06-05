@@ -67,6 +67,7 @@
     <Compile Include="Modules\UI\HUD.cs" />
     <Compile Include="Modules\UI\InteractionWindow.cs" />
     <Compile Include="Modules\UI\InventoryWindow.cs" />
+    <Compile Include="Modules\UI\LoadWorldMap.cs" />
     <Compile Include="Modules\UI\World.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
