@@ -28,7 +28,7 @@ namespace RPGgame.Modules.Items
     internal class Item
     {
         public Vector2f position { get; set; }
-        public Drawable textur { get; private set; }
+        public Sprite textur { get; private set; }
 
         private int id;
         private int costCoefficient;
@@ -37,22 +37,20 @@ namespace RPGgame.Modules.Items
         private string type;
 
 
-        public Item createNew(int itemType)
+        public Item createNew(TypeItemToCreate itemType)
         {
 
             switch (itemType)
             {
-                case 0:
+                case TypeItemToCreate.Key:
                     return new Item();
 
 
-                case 1:
-                    break;
-
             }
+            return new Item();
         }
 
-        public void compare(Item)
+        public void compare(Item item)
         {
             throw new Exception("Сompare недоступен, так как функция не реализована");
         }
@@ -60,18 +58,6 @@ namespace RPGgame.Modules.Items
         public int getId(){ 
 
             return this.id;
-        }
-
-        public Vector2f getPosition()
-        {
-            return this.position;
-
-        }
-
-        public void setPosition(Vector2f position)
-        {
-            this.position = position;
-
         }
 
         public string getDescribtion()
@@ -90,7 +76,7 @@ namespace RPGgame.Modules.Items
             renderIn.Draw(textur);
 
         } 
-        public void useInStorage(Entity)
+        public void useInStorage(Entity entity)
         {
             throw new Exception("useInStorage недоступен, так как функция не реализована");
 
