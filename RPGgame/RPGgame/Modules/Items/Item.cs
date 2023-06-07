@@ -7,7 +7,7 @@ using System;
 
 namespace RPGgame.Modules.Items
 {
-   public enum TypeItemToCreate
+    public enum TypeItemToCreate
     {
         Key,
         Note,
@@ -17,7 +17,7 @@ namespace RPGgame.Modules.Items
         Helmet,
         Cuirass,
         Boots,
-        Axe, 
+        Axe,
         Sword,
         Crossbow,
         Arrow,
@@ -30,14 +30,14 @@ namespace RPGgame.Modules.Items
         public Vector2f position { get; set; }
         public Sprite textur { get; private set; }
 
-        private int id;
-        private int costCoefficient;
-        private int rarity;
-        private string description;
-        private string type;
 
+        public int costCoefficient { get; private set; }
+        public int rarity { get; private set; }
+        public string description { get; private set; }
+        public string type { get; private set; }
+        public int id { get; private set; }
 
-        public Item createNew(TypeItemToCreate itemType)
+        public Item CreateNew(TypeItemToCreate itemType)
         {
 
             switch (itemType)
@@ -50,38 +50,21 @@ namespace RPGgame.Modules.Items
             return new Item();
         }
 
-        public void compare(Item item)
+        public void Compare(Item item)
         {
             throw new Exception("Сompare недоступен, так как функция не реализована");
         }
 
-        public int getId(){ 
 
-            return this.id;
-        }
-
-        public string getDescribtion()
-        {
-            return this.description;
-        }
-
-        public string getType()
-        {
-            return this.type;
-        }
-
-
-        public void draw(RenderWindow renderIn)
+        public void Draw(RenderWindow renderIn)
         {
             renderIn.Draw(textur);
 
-        } 
-        public void useInStorage(Entity entity)
+        }
+        public virtual void UseInStorage(Entity entity)
         {
             throw new Exception("useInStorage недоступен, так как функция не реализована");
 
         }
-
-        //public void setPosition(Vector2f position) => this.position = position;
     }
 }

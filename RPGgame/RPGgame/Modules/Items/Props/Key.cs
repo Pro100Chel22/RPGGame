@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class Key
+    internal class Key: Trash
     {
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGgame.Modules.Entitys;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class Trash
+    internal class Trash: Item
     {
+        public override void useInStorage(Entity entity)
+        {
+            throw new Exception("useInStorage недоступен, так как функция не реализована");
+
+        }
     }
 }

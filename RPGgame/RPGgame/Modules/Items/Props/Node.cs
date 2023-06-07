@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class Node
+    internal class Node: Trash
     {
     }
 }
