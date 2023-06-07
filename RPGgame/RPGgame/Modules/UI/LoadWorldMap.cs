@@ -34,30 +34,32 @@ namespace RPGgame.Modules.UI
             Vector2f[] newChests = new Vector2f[0];
             while ((line = reader.ReadLine()) != null)
             {
-                if (line == "Player:") type = 0;
-                else if (line == "Mobs:") type = 1;
-                else if (line == "Chests:") type = 2;
-                else if (line.Split(' ').Length >= 2)
+                switch (line)
                 {
-                    string[] values = line.Split(' ');
-                    if (type == 0)
-                    {
-                        player = new Vector2f(float.Parse(values[0]), float.Parse(values[1]));
-                    }
-                    else if (type == 1)
-                    {
-                        Array.Resize(ref newMobs, newMobs.Length + 1);
-                        newMobs[newMobs.Length - 1] = new ConfigMob
+                    case "Player:": type = 0; break;
+                    case "Mobs:": type = 1; break;
+                    case "Chests:": type = 2; break;
+                    default:
+                        string[] values = line.Split(' ');
+                        switch (type)
                         {
-                            pos = new Vector2f(float.Parse(values[0]), float.Parse(values[1])),
-                            type = 1
-                        };
-                    }
-                    else if (type == 2)
-                    {
-                        Array.Resize(ref newChests, newChests.Length + 1);
-                        newChests[newChests.Length - 1] = new Vector2f(float.Parse(values[0]), float.Parse(values[1]));
-                    }
+                            case 1:
+                                player = new Vector2f(float.Parse(values[0]), float.Parse(values[1]));
+                                break;
+                            case 2:
+                                Array.Resize(ref newMobs, newMobs.Length + 1);
+                                newMobs[newMobs.Length - 1] = new ConfigMob
+                                {
+                                    pos = new Vector2f(float.Parse(values[0]), float.Parse(values[1])),
+                                    type = 1
+                                };
+                                break;
+                            case 3:
+                                Array.Resize(ref newChests, newChests.Length + 1);
+                                newChests[newChests.Length - 1] = new Vector2f(float.Parse(values[0]), float.Parse(values[1]));
+                                break;
+                        }
+                        break;
                 }
             }
             mobs = newMobs;

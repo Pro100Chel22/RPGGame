@@ -26,7 +26,7 @@ namespace RPGgame
         {
             isActive = true;
             this.renderIn = renderIn;
-            this.events = sceneEvents;
+            events = sceneEvents;
             world = new World(this);
         }
 
@@ -52,14 +52,14 @@ namespace RPGgame
 
             switch (config)
             {
-                case Config.DrawHUD:
-                    break;
-                case Config.DrawInterWin:
-                    break;
-                case Config.DrawInventWin:
-                    break;
-                case Config.ClearDraw:
-                    break;
+                //case Config.DrawHUD:
+                //    break;
+                //case Config.DrawInterWin:
+                //    break;
+                //case Config.DrawInventWin:
+                //    break;
+                //case Config.ClearDraw:
+                //    break;
             }
         }
     }

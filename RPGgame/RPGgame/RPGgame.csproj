@@ -56,9 +56,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modules\Engine.cs" />
+    <Compile Include="Modules\Entitys\Behaviour.cs" />
     <Compile Include="Modules\Entitys\Entity.cs" />
     <Compile Include="Modules\Entitys\IAlive.cs" />
     <Compile Include="Modules\Entitys\IInteractive.cs" />
+    <Compile Include="Modules\Entitys\MainEquipments.cs" />
     <Compile Include="Modules\Event.cs" />
     <Compile Include="Modules\Items\Effect.cs" />
     <Compile Include="Modules\Items\Item.cs" />

@@ -8,5 +8,9 @@ namespace RPGgame.Modules.Entitys
 {
     internal class MainEquipments
     {
+        public bool checkEquipmentsById(int id)
+        {
+            return false;
+        } 
     }
 }

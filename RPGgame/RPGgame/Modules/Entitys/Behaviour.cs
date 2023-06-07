@@ -8,5 +8,7 @@ namespace RPGgame.Modules.Entitys
 {
     internal class Behaviour
     {
+
+        private bool isEvil;
     }
 }
