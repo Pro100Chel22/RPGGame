@@ -159,7 +159,7 @@ namespace RPGgame.Modules.Entitys
         {
             Array.Resize(ref effects, effects.Length + 1);
             effects[effects.Length - 1] = effect;
-
+ 
             throw new Exception("AddEffect не реализована проверка на одинаковые эффекты с разным временем");
             return;
         }
