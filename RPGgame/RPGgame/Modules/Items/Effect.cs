@@ -45,7 +45,7 @@ namespace RPGgame.Modules.Items
     {
         public bool WasEmploy { get; private set; }
 
-        public override void Employ(IAlive alive)
+        public override void Employ(IAlive Alive)
         {
             throw new Exception("Employ недоступен, так как функция не реализована");
 

@@ -20,7 +20,7 @@ namespace RPGgame.Modules.Storages
             for(int i  = 0; i < Items.GetLength(0); i++)
             {
                 for (int j = 0; j < Items.GetLength(1); j++) { 
-                    if (Items[i, j].id == id)
+                    if (Items[i, j].Id == id)
                     {
                         return new Vector2i(j, i);
                     }     
