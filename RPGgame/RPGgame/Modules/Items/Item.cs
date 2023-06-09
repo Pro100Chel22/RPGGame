@@ -89,4 +89,13 @@ namespace RPGgame.Modules.Items
 
         }
     }
+    internal class Equipment: Item
+    {
+        public Effect Effect { get; set; }
+    }
+        internal class Clothes: Item
+    {
+        public Effect Effect { get; set; }
+    }
+
 }

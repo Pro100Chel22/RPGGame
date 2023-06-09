@@ -1,16 +1,72 @@
 ﻿
+using RPGgame.Modules.Entitys;
+using System;
+
 namespace RPGgame.Modules.Items
 {
     internal class Effect
     {
+        public string type { get; private set; }
+        public uint effectValue { get; private set; }
+        public uint controlValue{ get; private set; }
+        public virtual void Employ(Alive Alive)
+        {
+            throw new Exception("Employ недоступен, так как функция не реализована");
+
+        }  
+        public virtual void Delete(Alive Alive)
+        {
+            throw new Exception("Delete недоступен, так как функция не реализована");
+
+        }
+
     }
 
-    internal class MomentaryEffect
+    internal class MomentaryEffect : Effect
     {
     }
-
-    internal class TemporaryEffect
+    internal class TreatmentM : MomentaryEffect
     {
+        public virtual void Employ(Alive Alive)
+        {
+            throw new Exception("Employ недоступен, так как функция не реализована");
+
+        }
+        public virtual void Delete(Alive Alive)
+        {
+            throw new Exception("Delete недоступен, так как функция не реализована");
+
+        }
+    }
+    internal class Damage : MomentaryEffect
+    {
+    }   
+    internal class ResistanceM : MomentaryEffect
+    {
+        public bool WasEmploy { get; private set; }
+
+        public override void Employ(Alive alive)
+        {
+            throw new Exception("Employ недоступен, так как функция не реализована");
+
+        }
+        public override void Delete(Alive alive)
+        {
+            throw new Exception("Delete недоступен, так как функция не реализована");
+
+        }
+
+    }
+
+
+    internal class TemporaryEffect: Effect
+    {
+        public float TimeEffect { get; private set; }
+        public bool Compare(TemporaryEffect temporaryEffect)
+        {
+            return TimeEffect >temporaryEffect.TimeEffect;
+        }
+
         // Для функции AddResistance использовать контрольное значение,
         // при удалении эффекта передавать в ReduceEndurance КОНТРОЛЬНОЕ ЗНАЧЕНИЕ  
     }
