@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class Trash: Item
+    internal class Trash : Item
     {
-        public override void useInStorage(Entity entity)
+        public virtual void UseInStorage(Entity entity)
         {
             throw new Exception("useInStorage недоступен, так как функция не реализована");
 

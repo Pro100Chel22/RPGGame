@@ -66,7 +66,7 @@
     <Compile Include="Modules\Items\Effect.cs" />
     <Compile Include="Modules\Items\Item.cs" />
     <Compile Include="Modules\Items\Props\Key.cs" />
-    <Compile Include="Modules\Items\Props\Node.cs" />
+    <Compile Include="Modules\Items\Props\Note.cs" />
     <Compile Include="Modules\Items\Props\Trash.cs" />
     <Compile Include="Modules\Storages\Chest.cs" />
     <Compile Include="Modules\Storages\Storage.cs" />
