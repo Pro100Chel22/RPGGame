@@ -1,5 +1,6 @@
 ﻿
 using RPGgame.Modules.Entitys;
+using RPGgame.Modules.UI;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -30,7 +31,6 @@ namespace RPGgame.Modules.Items
         public Vector2f position { get; set; }
         public Sprite textur { get; private set; }
 
-
         public int costCoefficient { get; private set; }
         public int rarity { get; private set; }
         public string description { get; private set; }
@@ -44,8 +44,30 @@ namespace RPGgame.Modules.Items
             {
                 case TypeItemToCreate.Key:
                     return new Item();
-
-
+                case TypeItemToCreate.Note:
+                    return new Item();
+                case TypeItemToCreate.EndurancePotion:
+                    return new Item();
+                case TypeItemToCreate.TreatmentPotion:
+                    return new Item();
+                case TypeItemToCreate.ResistancePotion:
+                    return new Item();
+                case TypeItemToCreate.Helmet:
+                    return new Item();
+                case TypeItemToCreate.Cuirass:
+                    return new Item();
+                case TypeItemToCreate.Boots:
+                    return new Item();
+                case TypeItemToCreate.Axe:
+                    return new Item();
+                case TypeItemToCreate.Crossbow:
+                    return new Item();
+                case TypeItemToCreate.Arrow:
+                    return new Item();
+                case TypeItemToCreate.FireBall:
+                    return new Item();
+                case TypeItemToCreate.MagicBall:
+                    return new Item();
             }
             return new Item();
         }
