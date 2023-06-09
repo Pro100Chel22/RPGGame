@@ -56,7 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modules\Engine.cs" />
-    <Compile Include="Modules\Entitys\Behaviour.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Behaviour.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Player.cs" />
     <Compile Include="Modules\Entitys\Entity.cs" />
     <Compile Include="Modules\Entitys\IAlive.cs" />
     <Compile Include="Modules\Entitys\IInteractive.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Modules\Items\Props\Trash.cs" />
     <Compile Include="Modules\Storages\Chest.cs" />
     <Compile Include="Modules\Storages\Storage.cs" />
+    <Compile Include="Modules\UI\Dialogs\Dialog.cs" />
     <Compile Include="Modules\UI\HUD.cs" />
     <Compile Include="Modules\UI\InteractionWindow.cs" />
     <Compile Include="Modules\UI\InventoryWindow.cs" />
@@ -97,6 +99,7 @@
     <Content Include="Modules\Resources\Map\GridCollisions.png" />
     <Content Include="Modules\Resources\Map\Config.txt" />
     <Content Include="Modules\Resources\Map\Textur.png" />
+    <Content Include="Modules\Resources\EntitySprites\Player.png" />
     <Content Include="openal32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

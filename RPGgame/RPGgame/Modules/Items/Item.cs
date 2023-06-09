@@ -50,7 +50,7 @@ namespace RPGgame.Modules.Items
             return new Item();
         }
 
-        public void Compare(Item item)
+        public static bool Compare(Item item1, Item item2)
         {
             throw new Exception("Сompare недоступен, так как функция не реализована");
         }
