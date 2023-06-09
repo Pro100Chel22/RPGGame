@@ -9,12 +9,12 @@ namespace RPGgame.Modules.Items
         public string type { get; private set; }
         public uint effectValue { get; private set; }
         public uint controlValue{ get; private set; }
-        public virtual void Employ(Alive Alive)
+        public virtual void Employ(IAlive Alive)
         {
             throw new Exception("Employ недоступен, так как функция не реализована");
 
         }  
-        public virtual void Delete(Alive Alive)
+        public virtual void Delete(IAlive Alive)
         {
             throw new Exception("Delete недоступен, так как функция не реализована");
 
@@ -27,12 +27,12 @@ namespace RPGgame.Modules.Items
     }
     internal class TreatmentM : MomentaryEffect
     {
-        public virtual void Employ(Alive Alive)
+        public override void Employ(IAlive Alive)
         {
             throw new Exception("Employ недоступен, так как функция не реализована");
 
         }
-        public virtual void Delete(Alive Alive)
+        public override void Delete(IAlive Alive)
         {
             throw new Exception("Delete недоступен, так как функция не реализована");
 
@@ -45,12 +45,12 @@ namespace RPGgame.Modules.Items
     {
         public bool WasEmploy { get; private set; }
 
-        public override void Employ(Alive alive)
+        public override void Employ(IAlive alive)
         {
             throw new Exception("Employ недоступен, так как функция не реализована");
 
         }
-        public override void Delete(Alive alive)
+        public override void Delete(IAlive Alive)
         {
             throw new Exception("Delete недоступен, так как функция не реализована");
 
