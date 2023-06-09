@@ -28,14 +28,14 @@ namespace RPGgame.Modules.Items
     }
     internal class Item
     {
-        public Vector2f position { get; set; }
-        public Sprite textur { get; private set; }
+        public Vector2f Position { get; set; }
+        public Sprite Textur { get; private set; }
 
-        public int costCoefficient { get; private set; }
-        public int rarity { get; private set; }
-        public string description { get; private set; }
-        public string type { get; private set; }
-        public int id { get; private set; }
+        public int CostCoefficient { get; private set; }
+        public int Rarity { get; private set; }
+        public string Description { get; private set; }
+        public string Type { get; private set; }
+        public int Id { get; private set; }
 
         public Item CreateNew(TypeItemToCreate itemType)
         {
@@ -80,22 +80,16 @@ namespace RPGgame.Modules.Items
 
         public void Draw(RenderWindow renderIn)
         {
-            renderIn.Draw(textur);
+            renderIn.Draw(Textur);
 
         }
         public virtual void UseInStorage(Entity entity)
         {
-            throw new Exception("useInStorage недоступен, так как функция не реализована");
+            throw new Exception("UseInStorage недоступен, так как функция не реализована");
 
         }
     }
-    internal class Equipment: Item
-    {
-        public Effect Effect { get; set; }
-    }
-        internal class Clothes: Item
-    {
-        public Effect Effect { get; set; }
-    }
+
+
 
 }
