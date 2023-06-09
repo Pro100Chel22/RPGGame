@@ -22,7 +22,7 @@ namespace RPGgame.Modules.Items.Props
             //object.Move(Vector2f);
             //what?
         }
-        public void Update(float dt)
+        public virtual void Update(float dt)
         {
             return;
         }

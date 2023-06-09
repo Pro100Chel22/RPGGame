@@ -8,7 +8,7 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class MagicBall : DynamicAmmunition
     {
-        public void Update(float dt)
+        public override void Update(float dt)
         {
             return;
         }
