@@ -42,7 +42,7 @@ namespace RPGgame.Modules.Entitys
             equipments = behaviour.GetSetOfEquipment();
             this.behaviour = behaviour;
 
-            position = pos; position = new Vector2f(100, 260);
+            position = pos; //position = new Vector2f(100, 260);
             direction = dir;
             hitbox = ch.hitbox;
             textur = ch.textur;
@@ -67,50 +67,76 @@ namespace RPGgame.Modules.Entitys
         {
             renderIn.Draw(textur);
 
-            CircleShape shape = new CircleShape(5);
-            shape.Position = position;
-            renderIn.Draw(shape);
+            //CircleShape shape = new CircleShape(5);
+            //shape.Position = position;
+            //renderIn.Draw(shape);
 
-            CircleShape shape2 = new CircleShape(2);
-            shape2.Origin = new Vector2f(shape2.Radius / 2, shape2.Radius / 2);
-            shape2.FillColor = Color.Blue;
-            shape2.Position = new Vector2f(hitbox.Left, hitbox.Top);
-            renderIn.Draw(shape2);
+            //CircleShape shape2 = new CircleShape(2);
+            //shape2.Origin = new Vector2f(shape2.Radius / 2, shape2.Radius / 2);
+            //shape2.FillColor = Color.Blue;
+            //shape2.Position = new Vector2f(hitbox.Left, hitbox.Top);
+            //renderIn.Draw(shape2);
 
-            CircleShape shape3 = new CircleShape(2);
-            shape3.Origin = new Vector2f(shape3.Radius/2, shape3.Radius / 2);
-            shape3.FillColor = Color.Blue;
-            shape3.Position = new Vector2f(hitbox.Left + hitbox.Width, hitbox.Top + hitbox.Height);
-            renderIn.Draw(shape3);
-
+            //CircleShape shape3 = new CircleShape(2);
+            //shape3.Origin = new Vector2f(shape3.Radius / 2, shape3.Radius / 2);
+            //shape3.FillColor = Color.Blue;
+            //shape3.Position = new Vector2f(hitbox.Left + hitbox.Width, hitbox.Top + hitbox.Height);
+            //renderIn.Draw(shape3);
         }
         public void DeleteInteraction()
         {
             interaction = null;
         }
-        public void Move(Vector2f dVector)
+        public void Move(float dTime, Vector2f dVector)
         {
-            throw new Exception("Move не реализована");
+            textur.Scale = new Vector2f(((dVector.X > 0) ? 1 : -1) * Math.Abs(textur.Scale.X), textur.Scale.Y);
+
+            position += dVector * speed * dTime;
+            hitbox.Top = hitboxOffset.Y + position.Y;
+            hitbox.Left = hitboxOffset.X + position.X;
+
+            if (world.CheckIntersection(hitbox))
+            {
+                hitbox.Top = hitboxOffset.Y + position.Y - 12.0f;
+                if (!world.CheckIntersection(hitbox))
+                {
+                    onGround = false;
+                    hitbox.Top = hitboxOffset.Y + position.Y;
+                }
+                else
+                {
+                    position -= dVector * speed * dTime;
+                    hitbox.Top = hitboxOffset.Y + position.Y;
+                    hitbox.Left = hitboxOffset.X + position.X;
+                }
+            }
+            else
+            {
+                hitbox.Top = hitboxOffset.Y + position.Y + 1.0f;
+                if (!world.CheckIntersection(hitbox))
+                {
+                    onGround = false;
+                }
+                hitbox.Top = hitboxOffset.Y + position.Y;
+            }
         }
         public void Update(float dTime)
         {
+            behaviour.Control(dTime, this);
 
-            //if (world.scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonD))
-            //{
-            //    position += new Vector2f(1 * speed * dTime, 0);
-            //}
-            //if (world.scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonA))
-            //{
-            //    position += new Vector2f(-1 * speed * dTime, 0);
-            //}
-
-            
-            if(!onGround)
+            if (!onGround)
             {
-                position += new Vector2f(0.0f, 100.0f * dTime);
+                position += new Vector2f(0.0f, 200.0f * dTime);
                 if (world.CheckIntersection(hitbox))
                 {
                     onGround = true;
+                    while (world.CheckIntersection(hitbox))
+                    {
+                        Console.WriteLine(position);
+                        position -= new Vector2f(0.0f, 0.1f);
+                        hitbox.Top = hitboxOffset.Y + position.Y;
+                        hitbox.Left = hitboxOffset.X + position.X;
+                    }
                 }
             }
 

@@ -16,7 +16,15 @@ namespace RPGgame.Modules.Entitys.Behaviours
 
         public override void Control(float dTime, Entity entity)
         {
-            throw new NotImplementedException();
+            if (entity.world.scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonD))
+            {
+                entity.Move(dTime, new Vector2f(1, 0));
+            }
+            if (entity.world.scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonA))
+            {
+                entity.Move(dTime, new Vector2f(-1, 0));
+                //position += new Vector2f(-1 * speed * dTime, 0);
+            }
         }
         public override Characteristics GetCharacteristics()
         {

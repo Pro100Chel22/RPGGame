@@ -43,28 +43,15 @@ namespace RPGgame.Modules.UI
 
         public bool CheckIntersection(FloatRect hitbox)
         {
-
-            //for (int i = (int)(hitbox.Top / scale) - 1; i < (hitbox.Top + hitbox.Height / scale) + 1; i++)
-            //{
-            //    for (int j = (int)(hitbox.Left / scale) - 1; j < (hitbox.Left + hitbox.Width / scale) + 1; j++)
-            //    {
-            //        if (0 <= i && i < gridCollisions.GetLength(0) &&
-            //            0 <= j && j < gridCollisions.GetLength(1) &&
-            //            gridCollisions[j, i].Intersects(hitbox)
-            //        )
-            //        {
-            //            return true;
-            //        }
-            //    }
-            //}
-
-            for (int i = 0; i < gridCollisions.GetLength(0); i++)
+            for (int i = (int)(hitbox.Top / scale) - 1; i < (hitbox.Top + hitbox.Height / scale) + 1; i++)
             {
-                for (int j = 0; j < gridCollisions.GetLength(1); j++)
+                for (int j = (int)(hitbox.Left / scale) - 1; j < (hitbox.Left + hitbox.Width / scale) + 1; j++)
                 {
-                    if (gridCollisions[i, j].Intersects(hitbox))
+                    if (0 <= i && i < gridCollisions.GetLength(0) &&
+                        0 <= j && j < gridCollisions.GetLength(1) &&
+                        gridCollisions[i, j].Intersects(hitbox)
+                    )
                     {
-                        Console.WriteLine($"{i} {j}");
                         return true;
                     }
                 }
@@ -97,28 +84,28 @@ namespace RPGgame.Modules.UI
                 chests[i].Draw(renderIn);
             }
 
-            CircleShape shape2 = new CircleShape(1);
-            CircleShape shape3 = new CircleShape(1);
-            shape2.Origin = new Vector2f(shape2.Radius / 2, shape2.Radius / 2);
-            shape3.Origin = new Vector2f(shape3.Radius / 2, shape3.Radius / 2);
-            for (int i = 0; i < gridCollisions.GetLength(0); i++)
-            {
-                for (int j = 0; j < gridCollisions.GetLength(1); j++)
-                {
-                    if (gridCollisions[i, j].Width != 0 && gridCollisions[i, j].Height != 0)
-                    {
-                        Vector2f position = new Vector2f();
+            //CircleShape shape2 = new CircleShape(1);
+            //CircleShape shape3 = new CircleShape(1);
+            //shape2.Origin = new Vector2f(shape2.Radius / 2, shape2.Radius / 2);
+            //shape3.Origin = new Vector2f(shape3.Radius / 2, shape3.Radius / 2);
+            //for (int i = 0; i < gridCollisions.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < gridCollisions.GetLength(1); j++)
+            //    {
+            //        if (gridCollisions[i, j].Width != 0 && gridCollisions[i, j].Height != 0)
+            //        {
+            //            Vector2f position = new Vector2f();
 
-                        shape2.FillColor = Color.Blue;
-                        shape2.Position = new Vector2f(gridCollisions[i, j].Left, gridCollisions[i, j].Top) + position;
-                        renderIn.Draw(shape2);
+            //            shape2.FillColor = Color.Blue;
+            //            shape2.Position = new Vector2f(gridCollisions[i, j].Left, gridCollisions[i, j].Top) + position;
+            //            renderIn.Draw(shape2);
 
-                        shape3.FillColor = Color.Blue;
-                        shape3.Position = new Vector2f(gridCollisions[i, j].Left + gridCollisions[i, j].Width, gridCollisions[i, j].Top + gridCollisions[i, j].Height) + position;
-                        renderIn.Draw(shape3);
-                    }
-                }
-            }
+            //            shape3.FillColor = Color.Blue;
+            //            shape3.Position = new Vector2f(gridCollisions[i, j].Left + gridCollisions[i, j].Width, gridCollisions[i, j].Top + gridCollisions[i, j].Height) + position;
+            //            renderIn.Draw(shape3);
+            //        }
+            //    }
+            //}
         }
     }
 }
