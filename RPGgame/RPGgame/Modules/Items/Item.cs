@@ -68,7 +68,7 @@ namespace RPGgame.Modules.Items
         };
         public static bool Compare(Item item1, Item item2)
         {
-            throw new Exception("Сompare недоступен, так как функция не реализована");
+            return item1.GetType() == item2.GetType();
         }
         public void Draw(RenderWindow renderIn)
         {

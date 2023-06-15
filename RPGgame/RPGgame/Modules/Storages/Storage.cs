@@ -1,6 +1,7 @@
 ﻿
 using RPGgame.Modules.Items;
 using SFML.System;
+using System;
 
 namespace RPGgame.Modules.Storages
 {
@@ -37,13 +38,8 @@ namespace RPGgame.Modules.Storages
                 return null;
             }
 
-            if (Items[pos.Y, pos.X] == null)
-            {
-                return null;
-            }
-
-            Item item = Items[pos.X, pos.Y];
-            Items[pos.X, pos.Y] = null;
+            Item item = Items[pos.Y, pos.X];
+            Items[pos.Y, pos.X] = null;
             return item;
         }
 

@@ -32,7 +32,7 @@ namespace RPGgame
 
         public void Update(float dTime)
         { 
-            if (inventoryWindow.IsActive) inventoryWindow.Update(dTime, events);
+            if (inventoryWindow.IsActive) inventoryWindow.Update(events);
             else if (!inventoryWindow.IsActive) world.Update(dTime);
         }
         public void Draw()

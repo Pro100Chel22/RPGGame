@@ -53,5 +53,19 @@ namespace RPGgame.Modules.Entitys
         {
             return mainWeapon;
         }
+
+        public Clothes PopArmor(TypeArmor type)
+        {
+            Clothes clt = clothes[(int)type];
+            clothes[(int)type] = null;
+            return clt;
+        }
+
+        public Weapon PopWeapon()
+        {
+            Weapon weapon = mainWeapon;
+            mainWeapon = null;
+            return weapon;
+        }
     }
 }

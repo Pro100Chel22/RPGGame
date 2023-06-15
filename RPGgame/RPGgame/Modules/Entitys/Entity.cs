@@ -63,7 +63,6 @@ namespace RPGgame.Modules.Entitys
             hitbox.Top = hitboxOffset.Y + position.Y;
             hitbox.Left = hitboxOffset.X + position.X;
 
-            
         }
         public void Draw(RenderWindow renderIn)
         {

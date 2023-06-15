@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using RPGgame.Modules.Items.Props;
 using System.Linq;
 using System.Collections.Generic;
+using RPGgame.Modules.Entitys.Behaviours;
 
 namespace RPGgame.Modules.UI
 {
@@ -30,7 +31,8 @@ namespace RPGgame.Modules.UI
             this.scene = scene;
             gridCollisions = map.gridCollisions;
             player = new Entity(Behaviour.CreatNew(0), this, map.player, new Vector2f(1, 0));
-            player.interaction = new Entity(Behaviour.CreatNew(0), this, new Vector2f(), new Vector2f());
+            //player.interaction = new Entity(Behaviour.CreatNew(0), this, new Vector2f(), new Vector2f());
+            //player.interaction.GetInventory().PutItem(new Sword());
 
             mobs = new Entity[0];
             chests = new Chest[0];
