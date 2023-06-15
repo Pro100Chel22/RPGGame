@@ -5,6 +5,9 @@ using SFML.Graphics;
 using SFML.System;
 using System;
 using System.Security.Cryptography;
+using RPGgame.Modules.Items.Props;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace RPGgame.Modules.UI
 {
@@ -18,23 +21,24 @@ namespace RPGgame.Modules.UI
         private Sprite background;
         private Texture tx; //
         private float scale; //
-        // private DynamicAmmunition[] dynamicAmmunitions;
+        private List<DynamicAmmunition> dynamicAmmunitions;
 
         public World(Scene scene)
         {
-            // dynamicAmmunitions = new DynamicAmmunitions[0]
-
             LoadWorldMap map = new LoadWorldMap("Resources\\Map");
 
             this.scene = scene;
             gridCollisions = map.gridCollisions;
             player = new Entity(Behaviour.CreatNew(0), this, map.player, new Vector2f(1, 0));
+            player.interaction = new Entity(Behaviour.CreatNew(0), this, new Vector2f(), new Vector2f());
 
             mobs = new Entity[0];
             chests = new Chest[0];
 
             background = map.background;
             scale = map.scale;
+
+            dynamicAmmunitions = new List<DynamicAmmunition>(0);
 
             //Console.WriteLine(map.player);
             //Console.WriteLine(map.mobs);
@@ -59,9 +63,9 @@ namespace RPGgame.Modules.UI
 
             return false;
         }
-        public void AddDynamicAmmunition() // DynamicAmmunitions
+        public void AddDynamicAmmunition(DynamicAmmunition dynamicAmmunition)
         {
-            throw new Exception("AddDynamicAmmunition недоступен, так как функция не реализована");
+            dynamicAmmunitions.Add(dynamicAmmunition);
         }
         public void Update(float dTime)
         {
@@ -69,6 +73,10 @@ namespace RPGgame.Modules.UI
             for (int i = 0; i < mobs.Length; i++)
             {
                 mobs[i].Update(dTime);
+            }
+            for(int i = 0; i < dynamicAmmunitions.Count; i++)
+            {
+                dynamicAmmunitions[i].Update(dTime);
             }
         }
         public void Draw(RenderWindow renderIn)

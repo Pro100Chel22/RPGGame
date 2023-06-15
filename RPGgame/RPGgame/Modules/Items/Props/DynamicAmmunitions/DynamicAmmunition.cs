@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class DynamicAmmunition:Equipment
+    internal class DynamicAmmunition : Equipment
     {
         public float Speed { get; private set; }
         public bool HittingAnObject;

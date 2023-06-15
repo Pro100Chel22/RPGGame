@@ -12,7 +12,7 @@ namespace RPGgame.Modules.Storages
         public Storage(bool isForSale)
         { 
             forSale = isForSale;
-            Items = new Item[20, 10];
+            Items = new Item[10, 10];
         }
 
         public Vector2i FindItemById(int id)
@@ -37,13 +37,13 @@ namespace RPGgame.Modules.Storages
                 return null;
             }
 
-            if (Item.Compare(new Item(), Items[pos.Y, pos.X]))
+            if (Items[pos.Y, pos.X] == null)
             {
                 return null;
             }
 
             Item item = Items[pos.X, pos.Y];
-            Items[pos.X, pos.Y] = new Item();
+            Items[pos.X, pos.Y] = null;
             return item;
         }
 
@@ -54,7 +54,7 @@ namespace RPGgame.Modules.Storages
                 return false;
             }
 
-            if (Item.Compare(new Item(), Items[pos.Y, pos.X]))
+            if(Items[pos.Y, pos.X] == null)
             {
                 Items[pos.Y, pos.X] = item;
                 return true;
@@ -69,7 +69,7 @@ namespace RPGgame.Modules.Storages
             {
                 for (int j = 0; j < Items.GetLength(1); j++)
                 {
-                    if (Item.Compare(new Item(), Items[i, j]))
+                    if (Items[i, j] == null)
                     {
                         Items[i, j] = item;
                         return true;

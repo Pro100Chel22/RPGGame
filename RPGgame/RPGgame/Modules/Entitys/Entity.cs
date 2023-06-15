@@ -39,7 +39,7 @@ namespace RPGgame.Modules.Entitys
 
             this.world = world;
             inventory = ch.inventory;
-            equipments = behaviour.GetSetOfEquipment();
+            equipments = ch.equipments;
             this.behaviour = behaviour;
 
             position = pos; //position = new Vector2f(100, 260);
@@ -62,6 +62,8 @@ namespace RPGgame.Modules.Entitys
             hitboxOffset = new Vector2f(-textur.Origin.X * textur.Scale.X, -textur.Origin.Y * textur.Scale.Y);
             hitbox.Top = hitboxOffset.Y + position.Y;
             hitbox.Left = hitboxOffset.X + position.X;
+
+            
         }
         public void Draw(RenderWindow renderIn)
         {

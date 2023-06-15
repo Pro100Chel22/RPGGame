@@ -1,54 +1,57 @@
 ﻿
+using RPGgame.Modules.Items.Props;
+
 namespace RPGgame.Modules.Entitys
 {
-    //enum TypeArmor
-    //{
-    //    Head = 0,
-    //    Body = 1,
-    //    Foots = 2
-    //}
-
     internal class MainEquipments
     {
-        // private Weapon mainWeapon;
-        // private Clothes[] clothes;
+        private Weapon mainWeapon;
+        private Clothes[] clothes;
+
+        public MainEquipments()
+        {
+            clothes = new Clothes[3];
+        }
 
         public bool CheckEquipmentsById(int id)
         {
-            // if(mainWeapon.id == id) {
-            // return true;
-            // }
-            // for(int i = 0; i < clothes.Length; i++){
-            // if(clothes[i].id == id) {
-            // return true;
-            // }
-            // }
+            if (mainWeapon.Id == id)
+            {
+                return true;
+            }
+            for (int i = 0; i < clothes.Length; i++)
+            {
+                if (clothes[i].Id == id)
+                {
+                    return true;
+                }
+            }
 
             return false;
         }
 
-        //public Armor SwapArmor(Armor armor)
-        //{
-        // Armor curArmor = clothes[armor.GetType()]
-        // clothes[armor.GetType()] = armor 
-        // return curArmor;
-        //}
+        public Clothes SwapArmor(Clothes armor)
+        {
+            Clothes curArmor = clothes[(int)armor.GetTypeArmor()];
+            clothes[(int)armor.GetTypeArmor()] = armor;
+            return curArmor;
+        }
 
-        //public Weapon SwapWeapon(Weapon weapon)
-        //{
-        // Armor curWeapon = mainWeapon;
-        // mainWeapon = weapon;
-        // return curWeapon;
-        //}
+        public Weapon SwapWeapon(Weapon weapon)
+        {
+            Weapon curWeapon = mainWeapon;
+            mainWeapon = weapon;
+            return curWeapon;
+        }
 
-        //public Armor GetArmor(TypeArmor type)
-        //{
-        // return clothes[armor.GetType()];
-        //}
+        public Clothes GetArmor(TypeArmor type)
+        {
+            return clothes[(int)type];
+        }
 
-        //public Weapon GetWeapon()
-        //{
-        // return mainWeapon;
-        //}
+        public Weapon GetWeapon()
+        {
+            return mainWeapon;
+        }
     }
 }

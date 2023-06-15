@@ -8,7 +8,6 @@ namespace RPGgame
 {
     enum Config
     {
-        DrawHUD,
         DrawInterWin,
         DrawInventWin,
         ClearDraw
@@ -16,47 +15,47 @@ namespace RPGgame
 
     internal class Scene
     {
-        private bool isActive;
         private RenderWindow renderIn;
         public Events events { get; private set; }
         private World world;
+        private HUD hud;
+        private InventoryWindow inventoryWindow;
 
         public Scene(RenderWindow renderIn, Events sceneEvents)
         {
-            isActive = true;
             this.renderIn = renderIn;
             events = sceneEvents;
             world = new World(this);
+            hud = new HUD(world.player);
+            inventoryWindow = new InventoryWindow(world.player);
         }
 
         public void Update(float dTime)
-        {
-            world.Update(dTime);
+        { 
+            if (inventoryWindow.IsActive) inventoryWindow.Update(dTime, events);
+            else if (!inventoryWindow.IsActive) world.Update(dTime);
         }
         public void Draw()
         {
             world.Draw(renderIn);
-        }
-        public void Pause()
-        {
-            isActive = false;
-        }
-        public void Resume()
-        {
-            isActive = true;
+            if (hud.IsActive)
+            {
+                hud.Draw(renderIn);
+            }
+            if (inventoryWindow.IsActive)
+            {
+                inventoryWindow.Draw(renderIn);
+            }
         }
         public void SetConfig(Config config)
         {
-            throw new Exception("SetConfig недоступен, так как функция не реализована");
-
             switch (config)
             {
-                //case Config.DrawHUD:
-                //    break;
                 //case Config.DrawInterWin:
                 //    break;
-                //case Config.DrawInventWin:
-                //    break;
+                case Config.DrawInventWin:
+                    inventoryWindow.IsActive = !inventoryWindow.IsActive;
+                    break;
                 //case Config.ClearDraw:
                 //    break;
             }

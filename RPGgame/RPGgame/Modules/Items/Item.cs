@@ -1,14 +1,14 @@
 ﻿
 using RPGgame.Modules.Entitys;
-using RPGgame.Modules.UI;
 using SFML.Graphics;
 using SFML.System;
-using SFML.Window;
 using System;
+using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 
 namespace RPGgame.Modules.Items
 {
-    public enum TypeItemToCreate
+    internal enum TypeItemToCreate
     {
         Key,
         Note,
@@ -24,12 +24,13 @@ namespace RPGgame.Modules.Items
         Arrow,
         FireBall,
         MagicBall,
-
     }
+
     internal class Item
     {
         public Vector2f Position { get; set; }
         public Sprite Textur { get; private set; }
+        public float scale = 1.0f;
 
         public int CostCoefficient { get; private set; }
         public int Rarity { get; private set; }
@@ -37,47 +38,38 @@ namespace RPGgame.Modules.Items
         public string Type { get; private set; }
         public int Id { get; private set; }
 
-        public Item CreateNew(TypeItemToCreate itemType)
+        public Item(string pathToTextur = "Resources\\EntitySprites\\Sword.png")
         {
-
-            switch (itemType)
+            Texture tx = new Texture(pathToTextur);
+         
+            Textur = new Sprite(tx)
             {
-                case TypeItemToCreate.Key:
-                    return new Item();
-                case TypeItemToCreate.Note:
-                    return new Item();
-                case TypeItemToCreate.EndurancePotion:
-                    return new Item();
-                case TypeItemToCreate.TreatmentPotion:
-                    return new Item();
-                case TypeItemToCreate.ResistancePotion:
-                    return new Item();
-                case TypeItemToCreate.Helmet:
-                    return new Item();
-                case TypeItemToCreate.Cuirass:
-                    return new Item();
-                case TypeItemToCreate.Boots:
-                    return new Item();
-                case TypeItemToCreate.Axe:
-                    return new Item();
-                case TypeItemToCreate.Crossbow:
-                    return new Item();
-                case TypeItemToCreate.Arrow:
-                    return new Item();
-                case TypeItemToCreate.FireBall:
-                    return new Item();
-                case TypeItemToCreate.MagicBall:
-                    return new Item();
-            }
-            return new Item();
+                Scale = new Vector2f(scale, scale),
+                Origin = new Vector2f(tx.Size.X, tx.Size.Y),
+            };
         }
 
+        public Item CreateNew(TypeItemToCreate itemType) => itemType switch
+        {
+            TypeItemToCreate.Arrow => new Item(),
+            TypeItemToCreate.Key => throw new NotImplementedException(),
+            TypeItemToCreate.Note => throw new NotImplementedException(),
+            TypeItemToCreate.EndurancePotion => throw new NotImplementedException(),
+            TypeItemToCreate.TreatmentPotion => throw new NotImplementedException(),
+            TypeItemToCreate.ResistancePotion => throw new NotImplementedException(),
+            TypeItemToCreate.Helmet => throw new NotImplementedException(),
+            TypeItemToCreate.Cuirass => throw new NotImplementedException(),
+            TypeItemToCreate.Boots => throw new NotImplementedException(),
+            TypeItemToCreate.Axe => throw new NotImplementedException(),
+            TypeItemToCreate.Sword => throw new NotImplementedException(),
+            TypeItemToCreate.Crossbow => throw new NotImplementedException(),
+            TypeItemToCreate.FireBall => throw new NotImplementedException(),
+            TypeItemToCreate.MagicBall => throw new NotImplementedException()
+        };
         public static bool Compare(Item item1, Item item2)
         {
             throw new Exception("Сompare недоступен, так как функция не реализована");
         }
-
-
         public void Draw(RenderWindow renderIn)
         {
             renderIn.Draw(Textur);
@@ -89,7 +81,4 @@ namespace RPGgame.Modules.Items
 
         }
     }
-
-
-
 }

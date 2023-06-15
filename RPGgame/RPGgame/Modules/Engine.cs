@@ -1,5 +1,4 @@
 ﻿
-
 using RPGgame.Modules;
 using SFML.Graphics;
 using SFML.System;

@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    public enum TypeArmor
+    internal enum TypeArmor
     {
-        Head, 
-        Body,
-        Foots
+        Head = 0, 
+        Body = 1,
+        Foots = 2
     }
-    internal class Clothes : Equipment
+
+    internal abstract class Clothes : Equipment
     {
-        public TypeArmor TypeArmor { get; private set; }
+        public abstract TypeArmor GetTypeArmor();
         public override void UseInStorage(Entity entity)
         {
             throw new Exception("useInStorage недоступен, так как функция не реализована");

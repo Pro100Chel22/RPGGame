@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class Boots: Clothes
+    internal class Helmet : Clothes
     {
-        public new TypeArmor TypeArmor { get; set; }
-        //right?
+        public override TypeArmor GetTypeArmor()
+        {
+            return TypeArmor.Head;
+        }
     }
 }

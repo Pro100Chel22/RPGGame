@@ -9,6 +9,7 @@ namespace RPGgame.Modules.Entitys
     internal struct Characteristics
     {
         public Storage inventory;
+        public MainEquipments equipments;
         public int money;
         public int maxHealth;
         public float speed;
@@ -41,7 +42,6 @@ namespace RPGgame.Modules.Entitys
         }
         public abstract void Control(float dTime, Entity entity); 
         public abstract Characteristics GetCharacteristics();
-        public abstract MainEquipments GetSetOfEquipment();
         public abstract Dialog GetDialog();
     }
 }
