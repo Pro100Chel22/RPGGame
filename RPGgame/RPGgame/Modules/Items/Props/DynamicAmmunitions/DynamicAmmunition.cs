@@ -1,12 +1,9 @@
-﻿using RPGgame.Modules.Entitys;
-using RPGgame.Modules.UI;
+﻿
+using RPGgame.Modules.Entitys;
+using RPGgame.Modules.Items.Effects;
 using SFML.Graphics;
 using SFML.System;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {

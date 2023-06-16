@@ -48,7 +48,6 @@ namespace RPGgame.Modules.UI
             mobs = new List<Entity>();
             for (int i = 0; i < map.mobs.Length; i++)
             {
-                Console.WriteLine(map.mobs[i].type);
                 mobs.Add(new Entity(Behaviour.CreatNew((TypeBehaviourToCreat)map.mobs[i].type), this, map.mobs[i].pos, new Vector2f(1, 0)));
             }
 

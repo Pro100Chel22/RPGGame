@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGgame.Modules.Items.Effect
+namespace RPGgame.Modules.Items.Effects
 {
-    internal class Bleeding:TemporaryEffect
+
+    internal class ResistanceM : MomentaryEffect
     {
+        public bool WasEmploy { get; private set; }
+
         public override void Employ(IAlive Alive)
         {
             throw new Exception("Employ недоступен, так как функция не реализована");
@@ -19,5 +22,6 @@ namespace RPGgame.Modules.Items.Effect
             throw new Exception("Delete недоступен, так как функция не реализована");
 
         }
+
     }
 }

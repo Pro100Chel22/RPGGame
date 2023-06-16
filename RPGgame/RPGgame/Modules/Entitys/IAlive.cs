@@ -1,10 +1,6 @@
-﻿using RPGgame.Modules.Items;
+﻿
+using RPGgame.Modules.Items.Effects;
 using SFML.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Entitys
 {

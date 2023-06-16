@@ -1,5 +1,5 @@
 ﻿
-using RPGgame.Modules.Items;
+using RPGgame.Modules.Items.Effects;
 using RPGgame.Modules.Storages;
 using RPGgame.Modules.UI;
 using SFML.Graphics;
@@ -133,7 +133,6 @@ namespace RPGgame.Modules.Entitys
                         onGround = true;
                         while (world.CheckIntersection(hitbox))
                         {
-                            Console.WriteLine(position);
                             position -= new Vector2f(0.0f, 0.1f);
                             hitbox.Top = hitboxOffset.Y + position.Y;
                             hitbox.Left = hitboxOffset.X + position.X;

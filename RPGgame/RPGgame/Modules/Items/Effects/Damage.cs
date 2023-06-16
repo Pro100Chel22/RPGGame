@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGgame.Modules.Items.Effect
+namespace RPGgame.Modules.Items.Effects
 {
-    internal class Endurance: TemporaryEffect
+    internal class Damage : MomentaryEffect
     {
         public override void Employ(IAlive Alive)
         {

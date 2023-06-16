@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGgame.Modules.Items.Effect
+namespace RPGgame.Modules.Items.Effects
 {
-    internal class TreatmentT: TemporaryEffect
+    internal class Bleeding:TemporaryEffect
     {
         public override void Employ(IAlive Alive)
         {
@@ -19,6 +19,5 @@ namespace RPGgame.Modules.Items.Effect
             throw new Exception("Delete недоступен, так как функция не реализована");
 
         }
-
     }
 }

@@ -5,22 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGgame.Modules.Items.Effect
+namespace RPGgame.Modules.Items.Effects
 {
-    internal class Effect
+    internal class TreatmentT: TemporaryEffect
     {
-        public string type { get; private set; }
-        public uint effectValue { get; private set; }
-        public uint controlValue { get; private set; }
-        public virtual void Employ(IAlive Alive)
+        public override void Employ(IAlive Alive)
         {
             throw new Exception("Employ недоступен, так как функция не реализована");
 
         }
-        public virtual void Delete(IAlive Alive)
+        public override void Delete(IAlive Alive)
         {
             throw new Exception("Delete недоступен, так как функция не реализована");
 
         }
+
     }
 }

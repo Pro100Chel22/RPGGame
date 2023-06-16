@@ -1,9 +1,7 @@
-﻿using RPGgame.Modules.Entitys;
+﻿
+using RPGgame.Modules.Entitys;
+using RPGgame.Modules.Items.Effects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {

@@ -1,11 +1,8 @@
-﻿using RPGgame.Modules.Items.Props;
+﻿
+using RPGgame.Modules.Items.Props;
 using RPGgame.Modules.Storages;
 using RPGgame.Modules.UI.Dialogs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Entitys.Behaviours
 {
