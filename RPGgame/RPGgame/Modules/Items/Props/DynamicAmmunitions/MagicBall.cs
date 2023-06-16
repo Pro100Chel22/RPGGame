@@ -1,4 +1,5 @@
 ﻿
+using RPGgame.Modules.Entitys;
 using RPGgame.Modules.Items.Effects;
 using SFML.Graphics;
 using SFML.System;

@@ -10,11 +10,5 @@ namespace RPGgame.Modules.Items.Props
     internal class Trash : Item
     {
         public Trash(string path) : base(path) { }
-
-        public override void UseInStorage(Entity entity)
-        {
-            throw new Exception("useInStorage недоступен, так как функция не реализована");
-
-        }
     }
 }

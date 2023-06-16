@@ -14,7 +14,6 @@ namespace RPGgame.Modules.Items.Props
             
         }
 
-        public int AttackPower { get; set; }
         public float DistanceOfAttack { get; set; }
 
         public override void Attack(Entity entity)

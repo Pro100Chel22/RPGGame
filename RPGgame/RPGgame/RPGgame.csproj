@@ -114,11 +114,12 @@
     <Compile Include="Modules\Items\Props\Foods\Food.cs" />
     <Compile Include="Modules\Items\Props\Raiments\Helmet.cs" />
     <Compile Include="Modules\Items\Props\Other\Key.cs" />
+    <Compile Include="Modules\Items\Props\Weapons\FireRing.cs" />
     <Compile Include="Modules\Items\Props\Weapons\LongRangeWeapons.cs" />
     <Compile Include="Modules\Items\Props\DynamicAmmunitions\MagicBall.cs" />
+    <Compile Include="Modules\Items\Props\Weapons\MagicRing.cs" />
     <Compile Include="Modules\Items\Props\Weapons\MeleeWeapons.cs" />
     <Compile Include="Modules\Items\Props\Other\Note.cs" />
-    <Compile Include="Modules\Items\Props\Foods\ResistancePotion.cs" />
     <Compile Include="Modules\Items\Props\Weapons\Sword.cs" />
     <Compile Include="Modules\Items\Props\Trash.cs" />
     <Compile Include="Modules\Items\Props\Foods\TreatmentPotion.cs" />

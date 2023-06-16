@@ -1,6 +1,7 @@
 ﻿
 using RPGgame.Modules.Entitys;
 using RPGgame.Modules.Items.Props;
+using RPGgame.Modules.Items.Props.Weapons;
 using SFML.Graphics;
 using SFML.System;
 using System;
@@ -13,13 +14,14 @@ namespace RPGgame.Modules.Items
         Note,
         EndurancePotion,
         TreatmentPotion,
-        ResistancePotion,
         Helmet,
         Cuirass,
         Boots,
         Axe,
         Sword,
         Crossbow,
+        FireRing,
+        MagicRing,
         Arrow,
         FireBall,
         MagicBall,
@@ -55,13 +57,14 @@ namespace RPGgame.Modules.Items
             TypeItemToCreate.Note => new Note(),
             TypeItemToCreate.EndurancePotion => new EndurancePotion(),
             TypeItemToCreate.TreatmentPotion => new TreatmentPotion(),
-            TypeItemToCreate.ResistancePotion => new ResistancePotion(),
             TypeItemToCreate.Helmet => new Helmet(),
             TypeItemToCreate.Cuirass => new Cuirass(),
             TypeItemToCreate.Boots => new Boots(),
             TypeItemToCreate.Axe => new Axe(),
             TypeItemToCreate.Sword => new Sword(),
             TypeItemToCreate.Crossbow => new Crossbow(),
+            TypeItemToCreate.FireRing => new FireRing(),
+            TypeItemToCreate.MagicRing => new MagicRing(),
             TypeItemToCreate.FireBall => new FireBall(),
             TypeItemToCreate.MagicBall => new MagicBall(),
             _ => throw new NotImplementedException()
@@ -75,9 +78,9 @@ namespace RPGgame.Modules.Items
             renderIn.Draw(Textur);
 
         }
-        public virtual void UseInStorage(Entity entity)
+        public virtual bool UseInStorage(Entity entity)
         {
-            throw new Exception("UseInStorage недоступен, так как функция не реализована");
+            return false;
         }
     }
 }

@@ -13,9 +13,10 @@ namespace RPGgame.Modules.Items.Props
     internal class DynamicAmmunition : Equipment
     {
         public float Speed { get; set; }
-        public bool HittingAnObject;
+        public bool HittingAnObject { get; set; }
         public Vector2f Direction { get; set; }
         public FloatRect HitBox { get; set; }
+        public Entity Owner { get; set; }
 
         public DynamicAmmunition(string path, List<Effect> effect) : base(path, effect)
         {
@@ -43,14 +44,14 @@ namespace RPGgame.Modules.Items.Props
                 HittingAnObject = true;
             }
 
-            if (CheckHit(world.player, hitBox))
+            if (Owner != world.player && !world.player.GetIsDead() && CheckHit(world.player, hitBox))
             {
                 return;
             }
 
             for (int i = 0; i < world.mobs.Count; i++)
             {
-                if(CheckHit(world.mobs[i], hitBox))
+                if(Owner != world.mobs[i] && !world.mobs[i].GetIsDead() && CheckHit(world.mobs[i], hitBox))
                 {
                     break;
                 }

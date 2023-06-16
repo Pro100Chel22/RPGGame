@@ -72,7 +72,14 @@ namespace RPGgame.Modules.UI
             }
             else if (events.getButtonOfMouse(MouseEvent.ButtonRight))
             {
-
+                if (0 <= x && x <= 9)
+                {
+                    if (player.GetInventory().Items[y, x] != null &&
+                        player.GetInventory().Items[y, x].UseInStorage(player))
+                    {
+                        player.GetInventory().Items[y, x] = null;
+                    }
+                }
             }
             else
             {
@@ -129,12 +136,12 @@ namespace RPGgame.Modules.UI
         }
         private void PutItem(IInteractive interactive, bool isInventory, Vector2i pos)
         {
-            if(item == null)
+            if (item == null)
             {
                 return;
-            }         
+            }
 
-            if(isInventory)
+            if (isInventory)
             {
                 if (interactive.GetInventory().PutItem(pos, item))
                 {
@@ -145,13 +152,13 @@ namespace RPGgame.Modules.UI
             {
                 if (pos.Y == 1)
                 {
-                    if(item is Weapon weapon)
+                    if (item is Weapon weapon)
                     {
                         interactive.GetInventory().PutItem(interactive.GetMainEquipments().SwapWeapon(weapon));
                         item = null;
                     }
                 }
-                else if(3 <= pos.Y && pos.Y <= 5)
+                else if (3 <= pos.Y && pos.Y <= 5)
                 {
                     if (item is Clothes clothes)
                     {
@@ -159,13 +166,13 @@ namespace RPGgame.Modules.UI
                         item = null;
                     }
                 }
-                
+
             }
             ReturnItem();
         }
         private void ReturnItem()
         {
-            if(item != null)
+            if (item != null)
             {
                 if (0 <= posInGrid.X && posInGrid.X <= 10)
                 {
@@ -226,7 +233,7 @@ namespace RPGgame.Modules.UI
                 new Vector2f(5.0f + shapeBackground.Size.X, 10.0f)
             );
 
-            shapeBackground.Size = new Vector2f((numb == 0) ? 550.0f : (interactive.IsAlive())? 535.0f : 485.0f, 500.0f);
+            shapeBackground.Size = new Vector2f((numb == 0) ? 550.0f : (interactive.IsAlive()) ? 535.0f : 485.0f, 500.0f);
             renderIn.Draw(shapeBackground);
 
             Item item;
@@ -239,7 +246,7 @@ namespace RPGgame.Modules.UI
                 }
             }
 
-            if(interactive.IsAlive())
+            if (interactive.IsAlive())
             {
                 item = interactive.GetMainEquipments().GetWeapon();
                 DrawElementOfInventory(item, delta + coundHor, 1, renderIn);

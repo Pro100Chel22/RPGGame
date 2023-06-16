@@ -1,5 +1,6 @@
 ﻿
 using RPGgame.Modules.Items.Props;
+using RPGgame.Modules.Items.Props.Weapons;
 using RPGgame.Modules.Storages;
 using RPGgame.Modules.UI.Dialogs;
 using SFML.System;
@@ -36,9 +37,15 @@ namespace RPGgame.Modules.Entitys.Behaviours
 
             Storage inventory = new Storage(true);
             inventory.PutItem(new Axe());
+            inventory.PutItem(new EndurancePotion());
+            inventory.PutItem(new TreatmentPotion());
+            inventory.PutItem(new Sword());
+            inventory.PutItem(new MagicRing());
+            inventory.PutItem(new FireRing());
+            inventory.PutItem(new Sword());
 
             MainEquipments equipments = new MainEquipments();
-            equipments.SwapWeapon(new Sword());
+            equipments.SwapWeapon(new Crossbow());
             equipments.SwapArmor(new Cuirass());
             equipments.SwapArmor(new Helmet());
             equipments.SwapArmor(new Boots());

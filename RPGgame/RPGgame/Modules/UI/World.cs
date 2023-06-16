@@ -57,8 +57,6 @@ namespace RPGgame.Modules.UI
             scale = map.scale;
 
             dynamicAmmunitions = new List<DynamicAmmunition>(0);
- 
-            AddDynamicAmmunition(new Arrow() { Position = new Vector2f(150, 550), Direction = new Vector2f(1, 0)});
         }
 
         public bool CheckIntersection(FloatRect hitbox)

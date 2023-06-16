@@ -18,11 +18,5 @@ namespace RPGgame.Modules.Items.Props
         public Clothes(string path, List<Effect> effect) : base(path, effect) { }
 
         public abstract TypeArmor GetTypeArmor();
-        public override void UseInStorage(Entity entity)
-        {
-            throw new Exception("useInStorage недоступен, так как функция не реализована");
-
-        }
     }
-
 }

@@ -10,10 +10,10 @@ namespace RPGgame.Modules.Items.Props
     {
         public TreatmentPotion() : base("Resources\\EntitySprites\\TreatmentPotion.png", new List<Effect>()) { }
         
-        public override void UseInStorage(Entity entity)
+        public override bool UseInStorage(Entity entity)
         {
-            throw new Exception("useInStorage недоступен, так как функция не реализована");
-
+            new TreatmentM().Employ(entity);
+            return true;
         }
     }
 }

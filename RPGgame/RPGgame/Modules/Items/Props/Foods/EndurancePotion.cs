@@ -10,10 +10,10 @@ namespace RPGgame.Modules.Items.Props
     {
         public EndurancePotion() : base("Resources\\EntitySprites\\EndurancePotion.png", new List<Effect>()) { }
 
-        public override void UseInStorage(Entity entity)
+        public override bool UseInStorage(Entity entity)
         {
-            throw new Exception("useInStorage недоступен, так как функция не реализована");
-
+            entity.AddEffect(new Endurance() { EffectValue = 2 });
+            return true;
         }
     }
 }

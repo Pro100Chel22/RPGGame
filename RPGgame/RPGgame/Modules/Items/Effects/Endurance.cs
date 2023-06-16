@@ -12,6 +12,7 @@ namespace RPGgame.Modules.Items.Effects
         public Endurance() 
         {
             EffectValue = 1;
+            TimeEffect = 5;
         }
 
         public override void Employ(IAlive Alive)

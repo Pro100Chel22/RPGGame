@@ -1,6 +1,7 @@
 ﻿
 using RPGgame.Modules.Entitys;
 using RPGgame.Modules.Items.Effects;
+using SFML.System;
 using System;
 using System.Collections.Generic;
 
@@ -10,11 +11,6 @@ namespace RPGgame.Modules.Items.Props
     {
         public LongRangeWeapons(string path, List<Effect> effect) : base(path, effect) { }
 
-        public float InistalSpeed { get; private set; }
-
-        public override void Attack(Entity entity)
-        {
-            throw new NotImplementedException();
-        }
+        public float InistalSpeed { get; set; }
     }
 }
