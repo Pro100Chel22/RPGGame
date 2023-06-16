@@ -83,6 +83,16 @@
     <Compile Include="Modules\Entitys\MainEquipments.cs" />
     <Compile Include="Modules\Event.cs" />
     <Compile Include="Modules\Items\Effect.cs" />
+    <Compile Include="Modules\Items\Effect\Bleeding.cs" />
+    <Compile Include="Modules\Items\Effect\Damage.cs" />
+    <Compile Include="Modules\Items\Effect\Effect.cs" />
+    <Compile Include="Modules\Items\Effect\Endurance.cs" />
+    <Compile Include="Modules\Items\Effect\Exhaustion.cs" />
+    <Compile Include="Modules\Items\Effect\MomentaryEffect.cs" />
+    <Compile Include="Modules\Items\Effect\ResistanceM.cs" />
+    <Compile Include="Modules\Items\Effect\TemporaryEffect.cs" />
+    <Compile Include="Modules\Items\Effect\TreatmentM.cs" />
+    <Compile Include="Modules\Items\Effect\TreatmentT.cs" />
     <Compile Include="Modules\Items\Item.cs" />
     <Compile Include="Modules\Items\Props\DynamicAmmunitions\Arrow.cs" />
     <Compile Include="Modules\Items\Props\Weapons\Axe.cs" />
