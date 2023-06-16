@@ -10,7 +10,7 @@ namespace RPGgame.Modules.Entitys
 
         public MainEquipments()
         {
-            clothes = new Clothes[3];
+            clothes = new Clothes[3]; 
         }
 
         public bool CheckEquipmentsById(int id)

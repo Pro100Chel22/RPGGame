@@ -15,8 +15,6 @@ namespace RPGgame.Modules.Entitys
         void ReduceEndurance(uint value);
         void AddEndurance(uint value);
         int GetEndurance();
-        void ReduceResistance(uint value);
-        uint AddResistance(uint value);
         int GetResistance();
         void AddEffect(TemporaryEffect effect);
     }

@@ -11,13 +11,11 @@ namespace RPGgame.Modules.Items.Effects
     {
         public override void Employ(IAlive Alive)
         {
-            throw new Exception("Employ недоступен, так как функция не реализована");
-
+            Alive.DealDamage(EffectValue);
         }
         public override void Delete(IAlive Alive)
         {
-            throw new Exception("Delete недоступен, так как функция не реализована");
-
+            
         }
     }
 }

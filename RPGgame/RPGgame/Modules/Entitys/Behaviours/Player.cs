@@ -35,11 +35,13 @@ namespace RPGgame.Modules.Entitys.Behaviours
             LoadModel loadModel = new LoadModel("Resources\\EntitySprites\\player.png");
 
             Storage inventory = new Storage(true);
-            inventory.PutItem(new Arrow());
+            inventory.PutItem(new Axe());
 
             MainEquipments equipments = new MainEquipments();
             equipments.SwapWeapon(new Sword());
             equipments.SwapArmor(new Cuirass());
+            equipments.SwapArmor(new Helmet());
+            equipments.SwapArmor(new Boots());
 
             return new Characteristics
             {

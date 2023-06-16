@@ -1,5 +1,6 @@
 ﻿
 using RPGgame.Modules.Items.Effects;
+using RPGgame.Modules.Items.Props;
 using RPGgame.Modules.Storages;
 using RPGgame.Modules.UI;
 using SFML.Graphics;
@@ -29,10 +30,11 @@ namespace RPGgame.Modules.Entitys
         private bool isDead;
         private float speed;
         private int health;
-        private int resistance;
         private int endurance;
 
         private Sprite weaponTextur;
+        private float timerEndurance;
+        private float timerEffects;
 
         public Entity(Behaviour behaviour, World world, Vector2f pos, Vector2f dir)
         {
@@ -55,7 +57,6 @@ namespace RPGgame.Modules.Entitys
             isDead = false;
             speed = ch.speed;
             health = ch.maxHealth;
-            resistance = 0;
             endurance = ch.maxEndurance;
 
             hitboxOffset = new Vector2f(-textur.Origin.X * textur.Scale.X, -textur.Origin.Y * textur.Scale.Y);
@@ -68,6 +69,9 @@ namespace RPGgame.Modules.Entitys
             textur.Scale = new Vector2f(((direction.X > 0) ? 1 : -1) * Math.Abs(textur.Scale.X), textur.Scale.Y);
             weaponTextur.Scale = new Vector2f(((direction.X > 0) ? -1 : 1) * Math.Abs(weaponTextur.Scale.X), weaponTextur.Scale.Y);
             direction = new Vector2f((direction.X > 0) ? 1.0f : -1.0f, 0.0f);
+
+            timerEndurance = 0;
+            timerEffects = 0;
         }
         public void Draw(RenderWindow renderIn)
         {
@@ -144,17 +148,29 @@ namespace RPGgame.Modules.Entitys
                 hitbox.Left = hitboxOffset.X + position.X;
                 textur.Position = position;
 
-                for (int i = 0; i < effects.Count; i++)
+                timerEffects += dTime;
+                if(timerEffects > 1)
                 {
-                    effects[i].Employ(this);
-                    effects[i].TimeEffect -= dTime;
-
-                    if (effects[i].TimeEffect <= 0)
+                    for (int i = 0; i < effects.Count; i++)
                     {
-                        effects[i].Delete(this);
-                        effects.RemoveAt(i);
-                        i -= 1;
+                        effects[i].Employ(this);
+                        effects[i].TimeEffect -= timerEffects;
+
+                        if (effects[i].TimeEffect <= 0)
+                        {
+                            effects[i].Delete(this);
+                            effects.RemoveAt(i);
+                            i -= 1;
+                        }
                     }
+                    timerEffects = 0;
+                }
+
+                timerEndurance += dTime;
+                if(timerEndurance > 0.5)
+                {
+                    timerEndurance = 0;
+                    AddEndurance(2);
                 }
             }            
         }
@@ -198,8 +214,7 @@ namespace RPGgame.Modules.Entitys
         }
         public void DealDamage(uint value)
         {
-            health -= (int)((1.0f - (float)resistance / 100.0f) * value);
-            Console.WriteLine((int)((1.0f - (float)resistance / 100.0f) * value));
+            health -= (int)((1.0f - (float)GetResistance()/ 100.0f) * value);
             if (health <= 0)
             {
                 isDead = true;
@@ -249,31 +264,20 @@ namespace RPGgame.Modules.Entitys
         {
             return endurance;
         }
-        public void ReduceResistance(uint value)
-        {
-            if (resistance - value < 0)
-            {
-                throw new Exception("ReduceResistance неправильные данные, не использовалось контрольное значение");
-            }
-            resistance -= (int)value;
-        }
-        public uint AddResistance(uint value)
-        {
-            if (resistance + value > 50)
-            {
-                int lastResistance = resistance;
-                resistance = 50;
-                return (uint)(50 - lastResistance);
-            }
-            else
-            {
-                resistance += (int)value;
-                return value;
-            }
-        }
         public int GetResistance()
         {
-            return resistance;
+            Clothes head = equipments.GetArmor(TypeArmor.Head);
+            Clothes body = equipments.GetArmor(TypeArmor.Body);
+            Clothes boots = equipments.GetArmor(TypeArmor.Foots);
+
+            int sum = 0;
+            if (head != null) { sum += (int)head.Effects[0].EffectValue; }
+            if (body != null) { sum += (int)body.Effects[0].EffectValue; }
+            if (boots != null) { sum += (int)boots.Effects[0].EffectValue; }
+            
+            if (sum > 50) sum = 50;
+
+            return sum;
         }
         public void AddEffect(TemporaryEffect effect)
         {

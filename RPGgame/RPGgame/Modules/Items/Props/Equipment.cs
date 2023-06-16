@@ -1,15 +1,16 @@
 ﻿
 using RPGgame.Modules.Items.Effects;
+using System.Collections.Generic;
 
 namespace RPGgame.Modules.Items.Props
 {
     internal class Equipment : Item
     {
-        public Equipment(string path, Effect effect) : base(path) 
+        public Equipment(string path, List<Effect> effect) : base(path) 
         { 
-            Effect = effect;
+            Effects = effect;
         }
 
-        public Effect Effect { get; set; }
+        public List<Effect> Effects { get; set; }
     }
 }

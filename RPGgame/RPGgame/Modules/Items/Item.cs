@@ -28,14 +28,14 @@ namespace RPGgame.Modules.Items
     internal class Item
     {
         public Vector2f Position { get; set; }
-        public Sprite Textur { get; private set; }
+        public Sprite Textur { get; set; }
         public float scale = 1.0f;
 
-        public int CostCoefficient { get; private set; }
-        public int Rarity { get; private set; }
-        public string Description { get; private set; }
-        public string Type { get; private set; }
-        public int Id { get; private set; }
+        public int CostCoefficient { get; set; }
+        public int Rarity { get; set; }
+        public string Description { get; set; }
+        public string Type { get; set; }
+        public int Id { get; set; }
 
         public Item(string pathToTextur)
         {
@@ -51,19 +51,19 @@ namespace RPGgame.Modules.Items
         public Item CreateNew(TypeItemToCreate itemType) => itemType switch
         {
             TypeItemToCreate.Arrow => new Arrow(),
-            TypeItemToCreate.Key => throw new NotImplementedException(),
-            TypeItemToCreate.Note => throw new NotImplementedException(),
-            TypeItemToCreate.EndurancePotion => throw new NotImplementedException(),
-            TypeItemToCreate.TreatmentPotion => throw new NotImplementedException(),
-            TypeItemToCreate.ResistancePotion => throw new NotImplementedException(),
-            TypeItemToCreate.Helmet => throw new NotImplementedException(),
-            TypeItemToCreate.Cuirass => throw new NotImplementedException(),
-            TypeItemToCreate.Boots => throw new NotImplementedException(),
-            TypeItemToCreate.Axe => throw new NotImplementedException(),
-            TypeItemToCreate.Sword => throw new NotImplementedException(),
-            TypeItemToCreate.Crossbow => throw new NotImplementedException(),
-            TypeItemToCreate.FireBall => throw new NotImplementedException(),
-            TypeItemToCreate.MagicBall => throw new NotImplementedException(),
+            TypeItemToCreate.Key => new Key(),
+            TypeItemToCreate.Note => new Note(),
+            TypeItemToCreate.EndurancePotion => new EndurancePotion(),
+            TypeItemToCreate.TreatmentPotion => new TreatmentPotion(),
+            TypeItemToCreate.ResistancePotion => new ResistancePotion(),
+            TypeItemToCreate.Helmet => new Helmet(),
+            TypeItemToCreate.Cuirass => new Cuirass(),
+            TypeItemToCreate.Boots => new Boots(),
+            TypeItemToCreate.Axe => new Axe(),
+            TypeItemToCreate.Sword => new Sword(),
+            TypeItemToCreate.Crossbow => new Crossbow(),
+            TypeItemToCreate.FireBall => new FireBall(),
+            TypeItemToCreate.MagicBall => new MagicBall(),
             _ => throw new NotImplementedException()
         };
         public static bool Compare(Item item1, Item item2)
@@ -78,7 +78,6 @@ namespace RPGgame.Modules.Items
         public virtual void UseInStorage(Entity entity)
         {
             throw new Exception("UseInStorage недоступен, так как функция не реализована");
-
         }
     }
 }

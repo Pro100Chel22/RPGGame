@@ -2,12 +2,13 @@
 using RPGgame.Modules.Entitys;
 using RPGgame.Modules.Items.Effects;
 using System;
+using System.Collections.Generic;
 
 namespace RPGgame.Modules.Items.Props
 {
     internal class TreatmentPotion : Food
     {
-        public TreatmentPotion() : base("Resources\\EntitySprites\\TreatmentPotion.png", new Effect()) { }
+        public TreatmentPotion() : base("Resources\\EntitySprites\\TreatmentPotion.png", new List<Effect>()) { }
         
         public override void UseInStorage(Entity entity)
         {

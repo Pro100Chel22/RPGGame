@@ -2,6 +2,7 @@
 using RPGgame.Modules.Entitys;
 using RPGgame.Modules.Items.Effects;
 using System;
+using System.Collections.Generic;
 
 namespace RPGgame.Modules.Items.Props
 {
@@ -14,7 +15,7 @@ namespace RPGgame.Modules.Items.Props
 
     internal abstract class Clothes : Equipment
     {
-        public Clothes(string path, Effect effect) : base(path, effect) { }
+        public Clothes(string path, List<Effect> effect) : base(path, effect) { }
 
         public abstract TypeArmor GetTypeArmor();
         public override void UseInStorage(Entity entity)

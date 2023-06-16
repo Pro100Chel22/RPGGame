@@ -14,7 +14,7 @@ namespace RPGgame.Modules.UI
         public Scene scene { get; private set; }
         public FloatRect[,] gridCollisions { get; private set; }
         public Entity player { get; private set; }
-        private List<Entity> mobs;
+        public List<Entity> mobs { get; private set; }
         private List<Chest> chests;
         private Sprite background;
         private float scale; //
@@ -57,6 +57,8 @@ namespace RPGgame.Modules.UI
             scale = map.scale;
 
             dynamicAmmunitions = new List<DynamicAmmunition>(0);
+ 
+            AddDynamicAmmunition(new Arrow() { Position = new Vector2f(150, 550), Direction = new Vector2f(1, 0)});
         }
 
         public bool CheckIntersection(FloatRect hitbox)
@@ -90,7 +92,12 @@ namespace RPGgame.Modules.UI
             }
             for (int i = 0; i < dynamicAmmunitions.Count; i++)
             {
-                dynamicAmmunitions[i].Update(dTime);
+                dynamicAmmunitions[i].Update(dTime, this);
+                if (dynamicAmmunitions[i].HittingAnObject)
+                {
+                    dynamicAmmunitions.RemoveAt(i);
+                    i -= 1;
+                }
             }
         }
         public void Draw(RenderWindow renderIn)
@@ -105,6 +112,10 @@ namespace RPGgame.Modules.UI
                 mobs[i].Draw(renderIn);
             }
             player.Draw(renderIn);
+            for(int i = 0;i < dynamicAmmunitions.Count; i++)
+            {
+                dynamicAmmunitions[i].Draw(renderIn);
+            }
         }
     }
 }

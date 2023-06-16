@@ -1,23 +1,19 @@
-﻿using RPGgame.Modules.Entitys;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using RPGgame.Modules.Entitys;
 
 namespace RPGgame.Modules.Items.Effects
 {
-    internal class Bleeding:TemporaryEffect
+    internal class Bleeding : TemporaryEffect
     {
+        public Bleeding() 
+        {
+            EffectValue = 2;
+            TimeEffect = 5;
+        }
+
         public override void Employ(IAlive Alive)
         {
-            throw new Exception("Employ недоступен, так как функция не реализована");
-
-        }
-        public override void Delete(IAlive Alive)
-        {
-            throw new Exception("Delete недоступен, так как функция не реализована");
-
+            Alive.DealDamage(EffectValue);
         }
     }
 }

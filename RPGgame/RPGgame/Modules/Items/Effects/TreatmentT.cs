@@ -1,24 +1,19 @@
-﻿using RPGgame.Modules.Entitys;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using RPGgame.Modules.Entitys;
 
 namespace RPGgame.Modules.Items.Effects
 {
-    internal class TreatmentT: TemporaryEffect
+    internal class TreatmentT : TemporaryEffect
     {
+        public TreatmentT()
+        {
+            EffectValue = 5;
+            TimeEffect = 5;
+        }
+
         public override void Employ(IAlive Alive)
         {
-            throw new Exception("Employ недоступен, так как функция не реализована");
-
+            Alive.AddHealth(EffectValue);
         }
-        public override void Delete(IAlive Alive)
-        {
-            throw new Exception("Delete недоступен, так как функция не реализована");
-
-        }
-
     }
 }

@@ -2,6 +2,7 @@
 using RPGgame.Modules.Items.Props;
 using RPGgame.Modules.Storages;
 using RPGgame.Modules.UI.Dialogs;
+using SFML.System;
 using System;
 
 namespace RPGgame.Modules.Entitys.Behaviours
@@ -19,11 +20,8 @@ namespace RPGgame.Modules.Entitys.Behaviours
             LoadModel loadModel = new LoadModel("Resources\\EntitySprites\\Inhabitant.png");
 
             Storage inventory = new Storage(true);
-            inventory.PutItem(new Arrow());
 
             MainEquipments equipments = new MainEquipments();
-            equipments.SwapWeapon(new Sword());
-            equipments.SwapArmor(new Cuirass());
 
             return new Characteristics
             {

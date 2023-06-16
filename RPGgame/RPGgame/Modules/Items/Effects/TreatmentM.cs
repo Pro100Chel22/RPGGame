@@ -9,15 +9,14 @@ namespace RPGgame.Modules.Items.Effects
 {
     internal class TreatmentM : MomentaryEffect
     {
+        public TreatmentM() 
+        { 
+            EffectValue = 50;
+        }
+
         public override void Employ(IAlive Alive)
         {
-            throw new Exception("Employ недоступен, так как функция не реализована");
-
-        }
-        public override void Delete(IAlive Alive)
-        {
-            throw new Exception("Delete недоступен, так как функция не реализована");
-
+            Alive.AddHealth(EffectValue);
         }
     }
 }
