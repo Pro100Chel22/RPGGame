@@ -16,6 +16,8 @@ namespace RPGgame.Modules.Items.Props
 
     internal abstract class Clothes : Equipment
     {
+        public Clothes(string path) : base(path) { }
+
         public abstract TypeArmor GetTypeArmor();
         public override void UseInStorage(Entity entity)
         {

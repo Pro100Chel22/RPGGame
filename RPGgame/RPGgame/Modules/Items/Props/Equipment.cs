@@ -8,6 +8,8 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class Equipment : Item
     {
+        public Equipment(string path) : base(path) { }
+
         public Effect Effect { get; set; }
     }
 }

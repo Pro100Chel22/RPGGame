@@ -8,8 +8,9 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class MeleeWeapons:Weapon
     {
+        public MeleeWeapons(string path) : base(path) { }
+
         public int AttackPower { get; private set; }
         public float DistanceOfAttack { get; private set; }
-
     }
 }

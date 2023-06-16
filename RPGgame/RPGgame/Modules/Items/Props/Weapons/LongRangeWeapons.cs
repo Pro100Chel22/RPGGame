@@ -8,7 +8,8 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class LongRangeWeapons:Weapon
     {
-        public float InistalSpeed { get; private set; }
+        public LongRangeWeapons(string path) : base(path) { }
 
+        public float InistalSpeed { get; private set; }
     }
 }

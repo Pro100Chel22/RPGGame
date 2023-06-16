@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class FireBall:DynamicAmmunition
+    internal class FireBall : DynamicAmmunition
     {
+        public FireBall() : base("Resources\\EntitySprites\\FireBall.png") { }
+
         public override void Update(float dt)
         {
             return;

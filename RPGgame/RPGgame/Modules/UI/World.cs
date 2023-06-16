@@ -3,12 +3,8 @@ using RPGgame.Modules.Storages;
 using RPGgame.Modules.Entitys;
 using SFML.Graphics;
 using SFML.System;
-using System;
-using System.Security.Cryptography;
 using RPGgame.Modules.Items.Props;
-using System.Linq;
 using System.Collections.Generic;
-using RPGgame.Modules.Entitys.Behaviours;
 
 namespace RPGgame.Modules.UI
 {
@@ -31,8 +27,22 @@ namespace RPGgame.Modules.UI
             this.scene = scene;
             gridCollisions = map.gridCollisions;
             player = new Entity(Behaviour.CreatNew(0), this, map.player, new Vector2f(1, 0));
-            //player.interaction = new Entity(Behaviour.CreatNew(0), this, new Vector2f(), new Vector2f());
-            //player.interaction.GetInventory().PutItem(new Sword());
+            player.interaction = new Entity(Behaviour.CreatNew(0), this, new Vector2f(), new Vector2f());
+            player.interaction.GetInventory().PutItem(new Helmet());
+            player.interaction.GetInventory().PutItem(new Boots());  
+            player.interaction.GetInventory().PutItem(new Key());
+            player.interaction.GetInventory().PutItem(new Note());
+
+            player.interaction.GetInventory().PutItem(new EndurancePotion());
+            player.interaction.GetInventory().PutItem(new TreatmentPotion());
+            player.interaction.GetInventory().PutItem(new ResistancePotion());
+
+            player.interaction.GetInventory().PutItem(new FireBall());
+            player.interaction.GetInventory().PutItem(new MagicBall());
+
+            player.interaction.GetInventory().PutItem(new Sword());
+            player.interaction.GetInventory().PutItem(new Axe());
+            player.interaction.GetInventory().PutItem(new Crossbow());
 
             mobs = new Entity[0];
             chests = new Chest[0];
@@ -76,7 +86,7 @@ namespace RPGgame.Modules.UI
             {
                 mobs[i].Update(dTime);
             }
-            for(int i = 0; i < dynamicAmmunitions.Count; i++)
+            for (int i = 0; i < dynamicAmmunitions.Count; i++)
             {
                 dynamicAmmunitions[i].Update(dTime);
             }

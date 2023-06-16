@@ -8,6 +8,8 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class Helmet : Clothes
     {
+        public Helmet() : base("Resources\\EntitySprites\\Helmet.png") { }
+
         public override TypeArmor GetTypeArmor()
         {
             return TypeArmor.Head;

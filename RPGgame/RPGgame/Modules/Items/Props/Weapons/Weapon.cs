@@ -9,6 +9,8 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class Weapon:Equipment
     {
+        public Weapon(string path) : base(path) { } //= "Resources\\EntitySprites\\Sword.png"
+
         public bool ReadyToAttack { get; set; }
         public float TimeAttack { get; set; }
         public virtual void Attack(Entity entity)

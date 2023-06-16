@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class ResistancePotion: Food
+    internal class ResistancePotion : Food
     {
+        public ResistancePotion() : base("Resources\\EntitySprites\\ResistancePotion.png") { }
+
         public override void UseInStorage(Entity entity)
         {
             throw new Exception("useInStorage недоступен, так как функция не реализована");

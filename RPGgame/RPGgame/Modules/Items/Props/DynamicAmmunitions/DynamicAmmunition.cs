@@ -17,6 +17,8 @@ namespace RPGgame.Modules.Items.Props
         public Vector2f Direction { get; private set; }   
         public FloatRect HitBox { get; private set; }
 
+        public DynamicAmmunition(string path) : base (path) { }
+
         public void Move(Vector2f Vector2f)
         {
             //object.Move(Vector2f);

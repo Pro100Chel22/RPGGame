@@ -9,6 +9,8 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class Sword : MeleeWeapons
     {
+        public Sword() : base("Resources\\EntitySprites\\Sword.png") { }
+
         public override void Attack(Entity entity)
         {
             entity.Attack();

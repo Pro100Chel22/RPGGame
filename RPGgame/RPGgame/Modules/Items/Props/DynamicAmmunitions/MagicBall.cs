@@ -8,6 +8,8 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class MagicBall : DynamicAmmunition
     {
+        public MagicBall() : base("Resources\\EntitySprites\\MagicBall.png") { }
+
         public override void Update(float dt)
         {
             return;

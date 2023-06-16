@@ -2,7 +2,6 @@
 using RPGgame.Modules;
 using RPGgame.Modules.UI;
 using SFML.Graphics;
-using System;
 
 namespace RPGgame
 {

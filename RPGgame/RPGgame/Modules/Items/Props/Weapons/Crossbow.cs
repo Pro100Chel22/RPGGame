@@ -9,6 +9,8 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class Crossbow: LongRangeWeapons
     {
+        public Crossbow() : base("Resources\\EntitySprites\\Crossbow.png") { }
+
         public override void Attack(Entity entity)
         {
             entity.Attack();

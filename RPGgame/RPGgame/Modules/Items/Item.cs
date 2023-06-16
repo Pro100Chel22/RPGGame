@@ -1,10 +1,9 @@
 ﻿
 using RPGgame.Modules.Entitys;
+using RPGgame.Modules.Items.Props;
 using SFML.Graphics;
 using SFML.System;
 using System;
-using static System.Net.Mime.MediaTypeNames;
-using System.IO;
 
 namespace RPGgame.Modules.Items
 {
@@ -38,7 +37,7 @@ namespace RPGgame.Modules.Items
         public string Type { get; private set; }
         public int Id { get; private set; }
 
-        public Item(string pathToTextur = "Resources\\EntitySprites\\Sword.png")
+        public Item(string pathToTextur)
         {
             Texture tx = new Texture(pathToTextur);
          
@@ -51,7 +50,7 @@ namespace RPGgame.Modules.Items
 
         public Item CreateNew(TypeItemToCreate itemType) => itemType switch
         {
-            TypeItemToCreate.Arrow => new Item(),
+            TypeItemToCreate.Arrow => new Arrow(),
             TypeItemToCreate.Key => throw new NotImplementedException(),
             TypeItemToCreate.Note => throw new NotImplementedException(),
             TypeItemToCreate.EndurancePotion => throw new NotImplementedException(),

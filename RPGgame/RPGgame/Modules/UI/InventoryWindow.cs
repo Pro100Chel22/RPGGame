@@ -2,10 +2,8 @@
 using RPGgame.Modules.Entitys;
 using RPGgame.Modules.Items;
 using RPGgame.Modules.Items.Props;
-using RPGgame.Modules.Storages;
 using SFML.Graphics;
 using SFML.System;
-using System;
 
 namespace RPGgame.Modules.UI
 {

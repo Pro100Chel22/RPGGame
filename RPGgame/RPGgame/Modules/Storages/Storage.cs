@@ -1,7 +1,6 @@
 ﻿
 using RPGgame.Modules.Items;
 using SFML.System;
-using System;
 
 namespace RPGgame.Modules.Storages
 {
