@@ -18,6 +18,19 @@ namespace RPGgame.Modules.Entitys
         public FloatRect hitbox;
     }
 
+    internal enum TypeBehaviourToCreat
+    {
+        Player = 0,
+        Trader = 1,
+        Inhabitant = 2,
+        Blacksmith = 3,
+        Mage = 4,
+        Guardsman = 5,
+        Archer = 6,
+        Skeleton = 7,
+        Orge = 8
+    }
+
     abstract class Behaviour
     {
         public bool isEvil { get; private set; }
@@ -27,11 +40,19 @@ namespace RPGgame.Modules.Entitys
             this.isEvil = isEvil;   
         }
 
-        public static Behaviour CreatNew(int type)
+        public static Behaviour CreatNew(TypeBehaviourToCreat type)
         {
             switch (type)
             {
-                case 0: return new Player();
+                case TypeBehaviourToCreat.Player: return new Player();
+                case TypeBehaviourToCreat.Trader: return new Trader();
+                case TypeBehaviourToCreat.Inhabitant: return new Inhabitant();
+                case TypeBehaviourToCreat.Blacksmith: return new Blacksmith();
+                case TypeBehaviourToCreat.Mage: return new Mage();
+                case TypeBehaviourToCreat.Guardsman: return new Guardsman();
+                case TypeBehaviourToCreat.Archer: return new Archer();
+                case TypeBehaviourToCreat.Skeleton: return new Skeleton();
+                case TypeBehaviourToCreat.Orge: return new Ogre();
             }
 
             return null;

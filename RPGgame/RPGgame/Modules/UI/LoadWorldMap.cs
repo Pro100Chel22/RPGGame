@@ -50,7 +50,7 @@ namespace RPGgame.Modules.UI
                                 newMobs[newMobs.Length - 1] = new ConfigMob
                                 {
                                     pos = new Vector2f(float.Parse(values[0]) * scale, float.Parse(values[1]) * scale),
-                                    type = 1
+                                    type = int.Parse(values[2])
                                 };
                                 break;
                             case 2:

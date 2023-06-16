@@ -98,7 +98,7 @@ namespace RPGgame.Modules.UI
             {
                 DraggingAnItem(player, false, new Vector2i(x, y));
             }
-            else if (x == 21 && player.interaction != null)
+            else if (x == 21 && player.interaction != null && player.interaction.IsAlive())
             {
                 DraggingAnItem(player.interaction, false, new Vector2i(x - 11, y));
             }
@@ -225,6 +225,8 @@ namespace RPGgame.Modules.UI
                 new Vector2f(5.0f, 10.0f) :
                 new Vector2f(5.0f + shapeBackground.Size.X, 10.0f)
             );
+
+            shapeBackground.Size = new Vector2f((numb == 0) ? 550.0f : (interactive.IsAlive())? 535.0f : 485.0f, 500.0f);
             renderIn.Draw(shapeBackground);
 
             Item item;
@@ -237,13 +239,16 @@ namespace RPGgame.Modules.UI
                 }
             }
 
-            item = interactive.GetMainEquipments().GetWeapon();
-            DrawElementOfInventory(item, delta + coundHor, 1, renderIn);
-
-            for (int i = 0; i < 3; i++)
+            if(interactive.IsAlive())
             {
-                item = interactive.GetMainEquipments().GetArmor((TypeArmor)i);
-                DrawElementOfInventory(item, delta + coundHor, i + 3, renderIn);
+                item = interactive.GetMainEquipments().GetWeapon();
+                DrawElementOfInventory(item, delta + coundHor, 1, renderIn);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    item = interactive.GetMainEquipments().GetArmor((TypeArmor)i);
+                    DrawElementOfInventory(item, delta + coundHor, i + 3, renderIn);
+                }
             }
         }
         private void DrawElementOfInventory(Item item, int x, int y, RenderWindow renderIn)

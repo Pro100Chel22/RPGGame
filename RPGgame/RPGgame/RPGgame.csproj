@@ -74,9 +74,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modules\Engine.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Archer.cs" />
     <Compile Include="Modules\Entitys\Behaviours\Behaviour.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Blacksmith.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Guardsman.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Inhabitant.cs" />
     <Compile Include="Modules\Entitys\Behaviours\LoadModel.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Mage.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Ogre.cs" />
     <Compile Include="Modules\Entitys\Behaviours\Player.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Skeleton.cs" />
+    <Compile Include="Modules\Entitys\Behaviours\Trader.cs" />
     <Compile Include="Modules\Entitys\Entity.cs" />
     <Compile Include="Modules\Entitys\IAlive.cs" />
     <Compile Include="Modules\Entitys\IInteractive.cs" />

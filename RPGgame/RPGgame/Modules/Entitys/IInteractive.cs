@@ -12,7 +12,8 @@ namespace RPGgame.Modules.Entitys
         MainEquipments GetMainEquipments();
         Behaviour GetBehaviour();
         Storage GetInventory();
+        bool IsAlive();
         int GetMoney();
-        void SetMoney(int Money);
+        void SetMoney(int money);
     }
 }

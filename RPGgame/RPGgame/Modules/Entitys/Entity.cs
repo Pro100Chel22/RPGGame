@@ -32,7 +32,7 @@ namespace RPGgame.Modules.Entitys
         private int resistance;
         private int endurance;
 
-        Sprite weaponTextur;
+        private Sprite weaponTextur;
 
         public Entity(Behaviour behaviour, World world, Vector2f pos, Vector2f dir)
         {
@@ -64,6 +64,10 @@ namespace RPGgame.Modules.Entitys
 
             weaponTextur = new Sprite();
             weaponTextur.Origin = new Vector2f(16, 16);
+
+            textur.Scale = new Vector2f(((direction.X > 0) ? 1 : -1) * Math.Abs(textur.Scale.X), textur.Scale.Y);
+            weaponTextur.Scale = new Vector2f(((direction.X > 0) ? -1 : 1) * Math.Abs(weaponTextur.Scale.X), weaponTextur.Scale.Y);
+            direction = new Vector2f((direction.X > 0) ? 1.0f : -1.0f, 0.0f);
         }
         public void Draw(RenderWindow renderIn)
         {
@@ -171,6 +175,10 @@ namespace RPGgame.Modules.Entitys
         public Storage GetInventory()
         {
             return inventory;
+        }
+        public bool IsAlive()
+        {
+            return true;
         }
         public int GetMoney()
         {
