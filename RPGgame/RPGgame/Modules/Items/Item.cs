@@ -50,7 +50,7 @@ namespace RPGgame.Modules.Items
             };
         }
 
-        public Item CreateNew(TypeItemToCreate itemType) => itemType switch
+        public static Item CreateNew(TypeItemToCreate itemType) => itemType switch
         {
             TypeItemToCreate.Arrow => new Arrow(),
             TypeItemToCreate.Key => new Key(),

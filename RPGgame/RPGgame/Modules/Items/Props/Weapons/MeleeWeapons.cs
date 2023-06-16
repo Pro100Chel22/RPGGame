@@ -28,7 +28,7 @@ namespace RPGgame.Modules.Items.Props
             entity.ReduceEndurance((uint)AttackPower);
 
             Vector2f delta = entity.world.player.position - entity.position;
-            if (Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2) < DistanceOfAttack
+            if (Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2) < DistanceOfAttack * DistanceOfAttack
                && entity != entity.world.player && delta.X * entity.direction.X > 0)
             {
                 for (int j = 0; j < Effects.Count; j++)
@@ -39,7 +39,7 @@ namespace RPGgame.Modules.Items.Props
 
             for (int i = 0; i < entity.world.mobs.Count; i++)
             {
-                if(entity.world.mobs[i].GetIsDead())
+                if(entity.world.mobs[i].GetIsDead() || Behaviour.Compare(entity.world.mobs[i].GetBehaviour(), entity.GetBehaviour()))
                 {
                     continue;
                 }

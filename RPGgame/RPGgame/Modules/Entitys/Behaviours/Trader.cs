@@ -1,4 +1,5 @@
 ﻿
+using RPGgame.Modules.Items;
 using RPGgame.Modules.Items.Props;
 using RPGgame.Modules.Storages;
 using RPGgame.Modules.UI.Dialogs;
@@ -20,6 +21,12 @@ namespace RPGgame.Modules.Entitys.Behaviours
             LoadModel loadModel = new LoadModel("Resources\\EntitySprites\\Trader.png");
 
             Storage inventory = new Storage(true);
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.Key));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.EndurancePotion));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.EndurancePotion));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.TreatmentPotion));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.TreatmentPotion));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.Note));
 
             MainEquipments equipments = new MainEquipments();
 

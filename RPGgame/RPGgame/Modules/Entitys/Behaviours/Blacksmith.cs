@@ -1,4 +1,5 @@
 ﻿
+using RPGgame.Modules.Items;
 using RPGgame.Modules.Items.Props;
 using RPGgame.Modules.Storages;
 using RPGgame.Modules.UI.Dialogs;
@@ -20,11 +21,14 @@ namespace RPGgame.Modules.Entitys.Behaviours
             LoadModel loadModel = new LoadModel("Resources\\EntitySprites\\Blacksmith.png");
 
             Storage inventory = new Storage(true);
-            inventory.PutItem(new Arrow());
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.Key));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.Arrow));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.Sword));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.Crossbow));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.Axe));
+            inventory.PutItem(Item.CreateNew(TypeItemToCreate.Note));
 
             MainEquipments equipments = new MainEquipments();
-            equipments.SwapWeapon(new Sword());
-            equipments.SwapArmor(new Cuirass());
 
             return new Characteristics
             {

@@ -11,9 +11,23 @@ namespace RPGgame.Modules.Entitys.Behaviours
     {
         public Inhabitant() : base(false) { }
 
+        private float timer = 0;
+
         public override void Control(float dTime, Entity entity)
         {
-
+            timer += dTime;
+            if (timer >= 14)
+            {
+                timer = 0;
+            }
+            else if(7 < timer && timer < 8)
+            {
+                entity.Move(dTime, new Vector2f(-1, 0));
+            }
+            else if(3 < timer && timer < 4)
+            {
+                entity.Move(dTime, new Vector2f(1, 0));
+            }
         }
         public override Characteristics GetCharacteristics()
         {

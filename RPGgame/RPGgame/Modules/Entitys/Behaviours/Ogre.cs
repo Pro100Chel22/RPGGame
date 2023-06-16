@@ -9,11 +9,57 @@ namespace RPGgame.Modules.Entitys.Behaviours
 {
     internal class Ogre : Behaviour
     {
-        public Ogre() : base(false) { }
+        public Ogre() : base(true) { }
+
+        private float timer = 0;
+
+        private bool CheckEntity(Entity entity, Entity cur, float dTime)
+        {
+            Vector2f delta = cur.position - entity.position;
+            double len = Math.Sqrt(Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2));
+            if (30 < len && len < 150)
+            {
+                entity.Move(dTime, new Vector2f((delta.X > 0) ? 1 : -1, 0));
+                return true;
+            }
+            else if (len <= 25)
+            {
+                entity.Move(0, new Vector2f((delta.X > 0) ? 1 : -1, 0));
+                entity.Attack();
+                return true;
+            }
+
+            return false;
+        }
 
         public override void Control(float dTime, Entity entity)
         {
+            if (!entity.world.player.GetIsDead() && CheckEntity(entity, entity.world.player, dTime))
+            {
+                return;
+            }
 
+            for (int i = 0; i < entity.world.mobs.Count; i++)
+            {
+                if (!entity.world.mobs[i].GetIsDead() && !entity.world.mobs[i].GetBehaviour().isEvil && CheckEntity(entity, entity.world.mobs[i], dTime))
+                {
+                    return;
+                }
+            }
+
+            timer += dTime;
+            if (timer >= 14)
+            {
+                timer = 0;
+            }
+            else if (6 < timer && timer < 7)
+            {
+                entity.Move(dTime, new Vector2f(-1, 0));
+            }
+            else if (2 < timer && timer < 3)
+            {
+                entity.Move(dTime, new Vector2f(1, 0));
+            }
         }
         public override Characteristics GetCharacteristics()
         {
@@ -22,6 +68,7 @@ namespace RPGgame.Modules.Entitys.Behaviours
             Storage inventory = new Storage(true);
 
             MainEquipments equipments = new MainEquipments();
+            equipments.SwapWeapon(new Axe());
 
             return new Characteristics
             {

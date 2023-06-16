@@ -15,7 +15,7 @@ namespace RPGgame.Modules.UI
         public FloatRect[,] gridCollisions { get; private set; }
         public Entity player { get; private set; }
         public List<Entity> mobs { get; private set; }
-        private List<Chest> chests;
+        public List<Chest> chests { get; private set; }
         private Sprite background;
         private float scale; //
         private List<DynamicAmmunition> dynamicAmmunitions;
@@ -52,6 +52,10 @@ namespace RPGgame.Modules.UI
             }
 
             chests = new List<Chest>();
+            for (int i = 0;i < map.chests.Length; i++)
+            {
+                chests.Add(new Chest(1) { position = map.chests[i] });
+            }
 
             background = map.background;
             scale = map.scale;
@@ -103,7 +107,7 @@ namespace RPGgame.Modules.UI
             renderIn.Draw(background);
             for (int i = 0; i < chests.Count; i++)
             {
-                chests[i].Draw(renderIn);
+                //chests[i].Draw(renderIn);
             }
             for (int i = 0; i < mobs.Count; i++)
             {

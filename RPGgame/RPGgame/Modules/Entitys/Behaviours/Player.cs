@@ -1,4 +1,5 @@
 ﻿
+using RPGgame.Modules.Items.Effects;
 using RPGgame.Modules.Items.Props;
 using RPGgame.Modules.Items.Props.Weapons;
 using RPGgame.Modules.Storages;
@@ -24,6 +25,28 @@ namespace RPGgame.Modules.Entitys.Behaviours
             }
             if (entity.world.scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonE))
             {
+                for (int i = 0; i < entity.world.chests.Count; i++)
+                {
+                    Vector2f delta = entity.world.chests[i].position - entity.position;
+                    if (Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2) < 400)
+                    {
+                        entity.interaction = entity.world.chests[i];
+                        entity.world.scene.SetConfig(Config.DrawInventWin);
+                        return;
+                    }
+                }
+
+                for (int i = 0; i < entity.world.mobs.Count; i++)
+                {
+                    Vector2f delta = entity.world.mobs[i].position - entity.position;
+                    if ((entity.world.mobs[i].GetIsDead() || !entity.world.mobs[i].GetBehaviour().isEvil) && Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2) < 400)
+                    {
+                        entity.interaction = entity.world.mobs[i];
+                        entity.world.scene.SetConfig(Config.DrawInventWin);
+                        return;
+                    }
+                }
+
                 entity.world.scene.SetConfig(Config.DrawInventWin);
             }
             if (entity.world.scene.events.getButtonOfMouse(MouseEvent.ButtonLeft))

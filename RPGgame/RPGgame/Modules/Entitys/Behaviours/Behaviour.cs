@@ -59,7 +59,7 @@ namespace RPGgame.Modules.Entitys
         }
         public static bool Compare(Behaviour behaviour1, Behaviour behaviour2)
         {
-            return false;
+            return behaviour1.GetType() == behaviour2.GetType();
         }
         public abstract void Control(float dTime, Entity entity); 
         public abstract Characteristics GetCharacteristics();

@@ -1,6 +1,7 @@
 ﻿
 using RPGgame.Modules.Items.Effects;
 using RPGgame.Modules.Items.Props;
+using RPGgame.Modules.Items.Props.Weapons;
 using RPGgame.Modules.Storages;
 using RPGgame.Modules.UI;
 using SFML.Graphics;
@@ -77,7 +78,7 @@ namespace RPGgame.Modules.Entitys
         {
             renderIn.Draw(textur);
 
-            if(equipments.GetWeapon() != null)
+            if (equipments.GetWeapon() != null && !(equipments.GetWeapon() is FireRing) && !(equipments.GetWeapon() is MagicRing))
             {
                 weaponTextur.Texture = equipments.GetWeapon().Textur.Texture;
                 weaponTextur.Position = position;

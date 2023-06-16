@@ -88,6 +88,7 @@ namespace RPGgame.Modules.UI
                 if (events.getButtonOfKeyboard(KeyboardEvent.ButtonEscape))
                 {
                     IsActive = false;
+                    player.DeleteInteraction();
                 }
             }
         }

@@ -1,7 +1,8 @@
-﻿ 
+﻿
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
+using System;
 
 namespace RPGgame.Modules
 {
@@ -35,7 +36,7 @@ namespace RPGgame.Modules
             buttomOfMouse = new bool[3];
             buttomOfKeyboard = new bool[8];
             this.eventsIn = eventsIn;
-            
+
             this.eventsIn.KeyPressed += (object obj, KeyEventArgs e) => UpdateKeyboardEvent(obj, e, true);
             this.eventsIn.KeyReleased += (object obj, KeyEventArgs e) => UpdateKeyboardEvent(obj, e, false);
             this.eventsIn.MouseButtonPressed += (object obj, MouseButtonEventArgs e) => UpdateMouseEvent(obj, e, true);
@@ -44,7 +45,10 @@ namespace RPGgame.Modules
 
         public Vector2i getMousePosition()
         {
-            return Mouse.GetPosition(eventsIn);
+            return new Vector2i(
+                (int)(Mouse.GetPosition(eventsIn).X * 1152 / eventsIn.Size.X),
+                (int)(Mouse.GetPosition(eventsIn).Y * 648 / eventsIn.Size.Y)
+            );
         }
         public bool getButtonOfMouse(MouseEvent e)
         {
