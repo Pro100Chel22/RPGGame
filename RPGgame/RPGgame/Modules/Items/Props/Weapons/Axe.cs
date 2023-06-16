@@ -9,11 +9,11 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class Axe : MeleeWeapons
     {
-        public Axe() : base("Resources\\EntitySprites\\Axe.png") { }
+        public Axe() : base("Resources\\EntitySprites\\Axe.png", new Effect()) { }
 
         public override void Attack(Entity entity)
         {
-            entity.Attack();
+            
         }
     }
 }

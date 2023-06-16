@@ -8,7 +8,7 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class Helmet : Clothes
     {
-        public Helmet() : base("Resources\\EntitySprites\\Helmet.png") { }
+        public Helmet() : base("Resources\\EntitySprites\\Helmet.png", new Effect()) { }
 
         public override TypeArmor GetTypeArmor()
         {

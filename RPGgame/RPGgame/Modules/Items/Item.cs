@@ -63,7 +63,8 @@ namespace RPGgame.Modules.Items
             TypeItemToCreate.Sword => throw new NotImplementedException(),
             TypeItemToCreate.Crossbow => throw new NotImplementedException(),
             TypeItemToCreate.FireBall => throw new NotImplementedException(),
-            TypeItemToCreate.MagicBall => throw new NotImplementedException()
+            TypeItemToCreate.MagicBall => throw new NotImplementedException(),
+            _ => throw new NotImplementedException()
         };
         public static bool Compare(Item item1, Item item2)
         {

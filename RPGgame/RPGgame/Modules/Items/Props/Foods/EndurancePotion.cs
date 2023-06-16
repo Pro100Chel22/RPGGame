@@ -9,7 +9,7 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class EndurancePotion: Food
     {
-        public EndurancePotion() : base("Resources\\EntitySprites\\EndurancePotion.png") { }
+        public EndurancePotion() : base("Resources\\EntitySprites\\EndurancePotion.png", new Effect()) { }
 
         public override void UseInStorage(Entity entity)
         {

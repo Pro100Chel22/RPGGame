@@ -61,10 +61,10 @@ namespace RPGgame.Modules.Items
 
     internal class TemporaryEffect: Effect
     {
-        public float TimeEffect { get; private set; }
-        public bool Compare(TemporaryEffect temporaryEffect)
+        public float TimeEffect { get; set; }
+        public static bool Compare(TemporaryEffect temporaryEffect1, TemporaryEffect temporaryEffect2)
         {
-            return TimeEffect >temporaryEffect.TimeEffect;
+            return temporaryEffect1.GetType() == temporaryEffect2.GetType();
         }
 
         // Для функции AddResistance использовать контрольное значение,

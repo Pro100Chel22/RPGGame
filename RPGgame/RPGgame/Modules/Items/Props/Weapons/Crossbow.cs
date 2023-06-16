@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class Crossbow: LongRangeWeapons
+    internal class Crossbow : LongRangeWeapons
     {
-        public Crossbow() : base("Resources\\EntitySprites\\Crossbow.png") { }
+        public Crossbow() : base("Resources\\EntitySprites\\Crossbow.png", new Effect()) { }
 
         public override void Attack(Entity entity)
         {
-            entity.Attack();
+           
         }
     }
 }

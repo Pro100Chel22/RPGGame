@@ -5,6 +5,7 @@ using RPGgame.Modules.UI;
 using SFML.Graphics;
 using SFML.System;
 using System;
+using System.Collections.Generic;
 
 namespace RPGgame.Modules.Entitys
 {
@@ -20,18 +21,18 @@ namespace RPGgame.Modules.Entitys
         private FloatRect hitbox;
         private Vector2f hitboxOffset; //
         public Sprite textur { get; private set; }
-        private TemporaryEffect[] effects;
+        private List<TemporaryEffect> effects;
         public IInteractive interaction { get; set; }
 
         private int money;
         private bool onGround;
         private bool isDead;
-        private bool isOpenInventory;
-        private bool isInteracting;
         private float speed;
         private int health;
         private int resistance;
         private int endurance;
+
+        Sprite weaponTextur;
 
         public Entity(Behaviour behaviour, World world, Vector2f pos, Vector2f dir)
         {
@@ -42,18 +43,16 @@ namespace RPGgame.Modules.Entitys
             equipments = ch.equipments;
             this.behaviour = behaviour;
 
-            position = pos; //position = new Vector2f(100, 260);
+            position = pos;
             direction = dir;
             hitbox = ch.hitbox;
             textur = ch.textur;
-            effects = new TemporaryEffect[0];
+            effects = new List<TemporaryEffect>();
             interaction = null;
 
             money = ch.money;
             onGround = false;
             isDead = false;
-            isOpenInventory = false;
-            isInteracting = false;
             speed = ch.speed;
             health = ch.maxHealth;
             resistance = 0;
@@ -63,34 +62,29 @@ namespace RPGgame.Modules.Entitys
             hitbox.Top = hitboxOffset.Y + position.Y;
             hitbox.Left = hitboxOffset.X + position.X;
 
+            weaponTextur = new Sprite();
+            weaponTextur.Origin = new Vector2f(16, 16);
         }
         public void Draw(RenderWindow renderIn)
         {
             renderIn.Draw(textur);
 
-            //CircleShape shape = new CircleShape(5);
-            //shape.Position = position;
-            //renderIn.Draw(shape);
-
-            //CircleShape shape2 = new CircleShape(2);
-            //shape2.Origin = new Vector2f(shape2.Radius / 2, shape2.Radius / 2);
-            //shape2.FillColor = Color.Blue;
-            //shape2.Position = new Vector2f(hitbox.Left, hitbox.Top);
-            //renderIn.Draw(shape2);
-
-            //CircleShape shape3 = new CircleShape(2);
-            //shape3.Origin = new Vector2f(shape3.Radius / 2, shape3.Radius / 2);
-            //shape3.FillColor = Color.Blue;
-            //shape3.Position = new Vector2f(hitbox.Left + hitbox.Width, hitbox.Top + hitbox.Height);
-            //renderIn.Draw(shape3);
+            if(equipments.GetWeapon() != null)
+            {
+                weaponTextur.Texture = equipments.GetWeapon().Textur.Texture;
+                weaponTextur.Position = position;
+                renderIn.Draw(weaponTextur);
+            }
         }
         public void DeleteInteraction()
         {
             interaction = null;
         }
         public void Move(float dTime, Vector2f dVector)
-        {
+        { 
             textur.Scale = new Vector2f(((dVector.X > 0) ? 1 : -1) * Math.Abs(textur.Scale.X), textur.Scale.Y);
+            weaponTextur.Scale = new Vector2f(((dVector.X > 0) ? -1 : 1) * Math.Abs(weaponTextur.Scale.X), weaponTextur.Scale.Y);
+            direction = new Vector2f((dVector.X > 0) ? 1.0f : -1.0f, 0.0f);
 
             position += dVector * speed * dTime;
             hitbox.Top = hitboxOffset.Y + position.Y;
@@ -123,32 +117,47 @@ namespace RPGgame.Modules.Entitys
         }
         public void Update(float dTime)
         {
-            behaviour.Control(dTime, this);
-
-            if (!onGround)
+            if(!isDead)
             {
-                position += new Vector2f(0.0f, 200.0f * dTime);
-                if (world.CheckIntersection(hitbox))
+                behaviour.Control(dTime, this);
+
+                if (!onGround)
                 {
-                    onGround = true;
-                    while (world.CheckIntersection(hitbox))
+                    position += new Vector2f(0.0f, 200.0f * dTime);
+                    if (world.CheckIntersection(hitbox))
                     {
-                        Console.WriteLine(position);
-                        position -= new Vector2f(0.0f, 0.1f);
-                        hitbox.Top = hitboxOffset.Y + position.Y;
-                        hitbox.Left = hitboxOffset.X + position.X;
+                        onGround = true;
+                        while (world.CheckIntersection(hitbox))
+                        {
+                            Console.WriteLine(position);
+                            position -= new Vector2f(0.0f, 0.1f);
+                            hitbox.Top = hitboxOffset.Y + position.Y;
+                            hitbox.Left = hitboxOffset.X + position.X;
+                        }
                     }
                 }
-            }
 
-            hitbox.Top = hitboxOffset.Y + position.Y;
-            hitbox.Left = hitboxOffset.X + position.X;
-            textur.Position = position;
+                hitbox.Top = hitboxOffset.Y + position.Y;
+                hitbox.Left = hitboxOffset.X + position.X;
+                textur.Position = position;
+
+                for (int i = 0; i < effects.Count; i++)
+                {
+                    effects[i].Employ(this);
+                    effects[i].TimeEffect -= dTime;
+
+                    if (effects[i].TimeEffect <= 0)
+                    {
+                        effects[i].Delete(this);
+                        effects.RemoveAt(i);
+                        i -= 1;
+                    }
+                }
+            }            
         }
         public void Attack()
         {
-            throw new Exception("Attack не реализована");
-            return;
+            equipments.GetWeapon()?.Attack(this);
         }
 
         public MainEquipments GetMainEquipments()
@@ -174,8 +183,7 @@ namespace RPGgame.Modules.Entitys
 
         public void Murder()
         {
-            isDead = true;
-            health = 0;
+            DealDamage(100000000);
         }
         public bool GetIsDead()
         {
@@ -184,11 +192,15 @@ namespace RPGgame.Modules.Entitys
         public void DealDamage(uint value)
         {
             health -= (int)((1.0f - (float)resistance / 100.0f) * value);
-
+            Console.WriteLine((int)((1.0f - (float)resistance / 100.0f) * value));
             if (health <= 0)
             {
                 isDead = true;
                 health = 0;
+                textur.Rotation = 90.0f;
+                textur.Scale = new Vector2f(-Math.Abs(textur.Scale.X), textur.Scale.Y);
+                textur.Origin = new Vector2f(55, 20);
+                GetInventory().PutItem(GetMainEquipments().PopWeapon());
             }
         }
         public void AddHealth(uint value)
@@ -258,11 +270,29 @@ namespace RPGgame.Modules.Entitys
         }
         public void AddEffect(TemporaryEffect effect)
         {
-            Array.Resize(ref effects, effects.Length + 1);
-            effects[effects.Length - 1] = effect;
+            int simEff = -1;
+            for(int i = 0; i < effects.Count; i++)
+            {
+                if(TemporaryEffect.Compare(effect, effects[i]))
+                {
+                    simEff = i;
+                    break;
+                }
+            }
 
-            throw new Exception("AddEffect не реализована проверка на одинаковые эффекты с разным временем");
-            return;
+            if(simEff != -1)
+            {
+                if(effects[simEff].TimeEffect < effect.TimeEffect)
+                {
+                    effects[simEff].Delete(this);
+                    effects.RemoveAt(simEff);
+                    effects.Add(effect);
+                }
+            }
+            else
+            {
+                effects.Add(effect);
+            }
         }
     }
 }

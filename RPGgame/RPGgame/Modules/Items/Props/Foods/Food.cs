@@ -9,7 +9,7 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class Food: Equipment
     {
-        public Food(string path) : base(path) { }
+        public Food(string path, Effect effect) : base(path, effect) { }
 
         public override void UseInStorage(Entity entity)
         {
