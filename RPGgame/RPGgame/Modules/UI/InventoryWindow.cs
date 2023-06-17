@@ -12,14 +12,14 @@ namespace RPGgame.Modules.UI
         public bool IsActive { get; set; }
         private Entity player;
 
-        RectangleShape shapeBackground;
-        int coundVert;
-        int coundHor;
-        int deltaX;
-        int deltaY;
-        int startPosX;
-        int startPosY;
+        private int coundVert;
+        private int coundHor;
+        private int deltaX;
+        private int deltaY;
+        private int startPosX;
+        private int startPosY;
         RectangleShape shapeSpace;
+        private RectangleShape shapeBackground;
 
         Item item;
         Sprite itemTextur;
@@ -98,17 +98,17 @@ namespace RPGgame.Modules.UI
             {
                 DraggingAnItem(player, true, new Vector2i(x, y));
             }
-            else if (11 <= x && x <= 20 && player.interaction != null)
+            else if (11 <= x && x <= 20 && player.Interaction != null)
             {
-                DraggingAnItem(player.interaction, true, new Vector2i(x - 11, y));
+                DraggingAnItem(player.Interaction, true, new Vector2i(x - 11, y));
             }
             else if (x == 10 && (y == 1 || 3 <= y && y <= 5))
             {
                 DraggingAnItem(player, false, new Vector2i(x, y));
             }
-            else if (x == 21 && player.interaction != null && player.interaction.IsAlive())
+            else if (x == 21 && player.Interaction != null && player.Interaction.IsAlive())
             {
-                DraggingAnItem(player.interaction, false, new Vector2i(x - 11, y));
+                DraggingAnItem(player.Interaction, false, new Vector2i(x - 11, y));
             }
             posInGrid = new Vector2i(x, y);
         }
@@ -120,17 +120,17 @@ namespace RPGgame.Modules.UI
                 {
                     PutItem(player, true, new Vector2i(pos.X, pos.Y));
                 }
-                else if (11 <= pos.X && pos.X <= 20 && player.interaction != null)
+                else if (11 <= pos.X && pos.X <= 20 && player.Interaction != null)
                 {
-                    PutItem(player.interaction, true, new Vector2i(pos.X - 11, pos.Y));
+                    PutItem(player.Interaction, true, new Vector2i(pos.X - 11, pos.Y));
                 }
                 else if (pos.X == 10 && (pos.Y == 1 || 3 <= pos.Y && pos.Y <= 5))
                 {
                     PutItem(player, false, new Vector2i(pos.X, pos.Y));
                 }
-                else if (pos.X == 21 && player.interaction != null)
+                else if (pos.X == 21 && player.Interaction != null)
                 {
-                    PutItem(player.interaction, false, new Vector2i(pos.X - 11, pos.Y));
+                    PutItem(player.Interaction, false, new Vector2i(pos.X - 11, pos.Y));
                 }
             }
             ReturnItem();
@@ -179,9 +179,9 @@ namespace RPGgame.Modules.UI
                 {
                     player.GetInventory().PutItem(item);
                 }
-                else if (player.interaction != null)
+                else if (player.Interaction != null)
                 {
-                    player.interaction.GetInventory().PutItem(item);
+                    player.Interaction.GetInventory().PutItem(item);
                 }
                 item = null;
             }
@@ -216,9 +216,9 @@ namespace RPGgame.Modules.UI
         public void Draw(RenderWindow renderIn)
         {
             Draw(0, player, renderIn);
-            if (player.interaction != null)
+            if (player.Interaction != null)
             {
-                Draw(1, player.interaction, renderIn);
+                Draw(1, player.Interaction, renderIn);
             }
 
             if (item != null)

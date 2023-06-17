@@ -15,7 +15,7 @@ namespace RPGgame.Modules.Entitys.Behaviours
 
         private bool CheckEntity(Entity entity, Entity cur, float dTime)
         {
-            Vector2f delta = cur.position - entity.position;
+            Vector2f delta = cur.Position - entity.Position;
             double len = Math.Sqrt(Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2));
             if (30 < len && len < 200)
             {
@@ -33,14 +33,14 @@ namespace RPGgame.Modules.Entitys.Behaviours
         }
         public override void Control(float dTime, Entity entity)
         {
-            if(!entity.world.player.GetIsDead() && CheckEntity(entity, entity.world.player, dTime))
+            if(!entity.World.Player.GetIsDead() && CheckEntity(entity, entity.World.Player, dTime))
             {
                 return;
             }
 
-            for (int i = 0; i < entity.world.mobs.Count; i++)
+            for (int i = 0; i < entity.World.Mobs.Count; i++)
             {
-                if (!entity.world.mobs[i].GetIsDead() && !entity.world.mobs[i].GetBehaviour().isEvil && CheckEntity(entity, entity.world.mobs[i], dTime))
+                if (!entity.World.Mobs[i].GetIsDead() && !entity.World.Mobs[i].GetBehaviour().isEvil && CheckEntity(entity, entity.World.Mobs[i], dTime))
                 {
                     return;
                 }

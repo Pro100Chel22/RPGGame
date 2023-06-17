@@ -26,7 +26,7 @@ namespace RPGgame.Modules.Items.Props
             Time.Restart();
             entity.ReduceEndurance((uint)AttackPower);
 
-            entity.world.AddDynamicAmmunition(new Arrow() { Position = entity.position + new Vector2f(0, 15.0f), Direction = entity.direction, Owner = entity });
+            entity.World.AddDynamicAmmunition(new Arrow() { Position = entity.Position + new Vector2f(0, 15.0f), Direction = entity.Direction, Owner = entity });
         }
     }
 }

@@ -6,13 +6,10 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class Helmet : Clothes
     {
-        public Helmet() : base("Resources\\EntitySprites\\Helmet.png", new List<Effect>()) 
+        public Helmet() : base("Resources\\EntitySprites\\Helmet.png", new List<Effect>())
         {
             Effects.Add(
-                new ResistanceM()
-                {
-                    EffectValue = 15,
-                }
+                new ResistanceM() { EffectValue = 15 }
             );
         }
 

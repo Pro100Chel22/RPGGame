@@ -6,8 +6,5 @@ using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Effects
 {
-    internal class MomentaryEffect: Effect
-    {
-
-    }
+    internal class MomentaryEffect : Effect { }
 }

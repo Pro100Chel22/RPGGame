@@ -25,8 +25,8 @@ namespace RPGgame
             this.renderIn = renderIn;
             events = sceneEvents;
             world = new World(this);
-            hud = new HUD(world.player);
-            inventoryWindow = new InventoryWindow(world.player);
+            hud = new HUD(world.Player);
+            inventoryWindow = new InventoryWindow(world.Player);
         }
 
         public void Update(float dTime)

@@ -8,9 +8,9 @@ namespace RPGgame.Modules.Storages
 {
     internal class Chest : Storage, IInteractive
     {
-        public int idKey { get; private set; }
-        public Sprite textur { get; private set; }
-        public Vector2f position { get; set; }
+        public int IdKey { get; private set; }
+        public Sprite Textur { get; private set; }
+        public Vector2f Position { get; set; }
 
         public MainEquipments GetMainEquipments()
         {
@@ -39,11 +39,11 @@ namespace RPGgame.Modules.Storages
 
         public Chest(int idKey) : base(false)
         {
-            this.idKey = idKey;
+            this.IdKey = idKey;
         }
         public void Draw(RenderWindow renderIn)
         {
-            renderIn.Draw(textur);
+            renderIn.Draw(Textur);
         }
     }
 }

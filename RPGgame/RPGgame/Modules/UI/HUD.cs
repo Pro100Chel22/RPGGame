@@ -12,12 +12,12 @@ namespace RPGgame.Modules.UI
         private int maxHp;
         private int maxEndurance;
 
-        RectangleShape shapeOutlineHealth;
-        RectangleShape shapeHealth;
-        RectangleShape shapeOutlineEndurance;
-        RectangleShape shapeEndurance;
-        RectangleShape shapeOutlineResistance;
-        RectangleShape shapeResistance;
+        private RectangleShape shapeOutlineHealth;
+        private RectangleShape shapeHealth;
+        private RectangleShape shapeOutlineEndurance;
+        private RectangleShape shapeEndurance;
+        private RectangleShape shapeOutlineResistance;
+        private RectangleShape shapeResistance;
 
         public HUD(Entity player) 
         {

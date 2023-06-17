@@ -6,7 +6,6 @@ using SFML.Graphics;
 using SFML.System;
 using System;
 using System.Collections.Generic;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RPGgame.Modules.Items.Props
 {
@@ -44,14 +43,14 @@ namespace RPGgame.Modules.Items.Props
                 HittingAnObject = true;
             }
 
-            if (Owner != world.player && !world.player.GetIsDead() && CheckHit(world.player, hitBox))
+            if (Owner != world.Player && !world.Player.GetIsDead() && CheckHit(world.Player, hitBox))
             {
                 return;
             }
 
-            for (int i = 0; i < world.mobs.Count; i++)
+            for (int i = 0; i < world.Mobs.Count; i++)
             {
-                if(Owner != world.mobs[i] && !world.mobs[i].GetIsDead() && CheckHit(world.mobs[i], hitBox))
+                if(Owner != world.Mobs[i] && !world.Mobs[i].GetIsDead() && CheckHit(world.Mobs[i], hitBox))
                 {
                     break;
                 }

@@ -1,8 +1,6 @@
 ﻿
-using RPGgame.Modules.Entitys;
 using RPGgame.Modules.Items.Effects;
 using SFML.Graphics;
-using SFML.System;
 using System.Collections.Generic;
 
 namespace RPGgame.Modules.Items.Props

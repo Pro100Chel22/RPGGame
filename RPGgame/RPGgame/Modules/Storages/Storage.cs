@@ -6,12 +6,12 @@ namespace RPGgame.Modules.Storages
 {
     internal class Storage
     {
-        public bool forSale { get; private set; }
+        public bool ForSale { get; private set; }
         public Item[,] Items { get; private set; }
 
         public Storage(bool isForSale)
         { 
-            forSale = isForSale;
+            ForSale = isForSale;
             Items = new Item[10, 10];
         }
 

@@ -15,41 +15,41 @@ namespace RPGgame.Modules.Entitys.Behaviours
 
         public override void Control(float dTime, Entity entity)
         {
-            if (entity.world.scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonD))
+            if (entity.World.Scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonD))
             {
                 entity.Move(dTime, new Vector2f(1, 0));
             }
-            if (entity.world.scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonA))
+            if (entity.World.Scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonA))
             {
                 entity.Move(dTime, new Vector2f(-1, 0));
             }
-            if (entity.world.scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonE))
+            if (entity.World.Scene.events.getButtonOfKeyboard(KeyboardEvent.ButtonE))
             {
-                for (int i = 0; i < entity.world.chests.Count; i++)
+                for (int i = 0; i < entity.World.Chests.Count; i++)
                 {
-                    Vector2f delta = entity.world.chests[i].position - entity.position;
+                    Vector2f delta = entity.World.Chests[i].Position - entity.Position;
                     if (Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2) < 400)
                     {
-                        entity.interaction = entity.world.chests[i];
-                        entity.world.scene.SetConfig(Config.DrawInventWin);
+                        entity.Interaction = entity.World.Chests[i];
+                        entity.World.Scene.SetConfig(Config.DrawInventWin);
                         return;
                     }
                 }
 
-                for (int i = 0; i < entity.world.mobs.Count; i++)
+                for (int i = 0; i < entity.World.Mobs.Count; i++)
                 {
-                    Vector2f delta = entity.world.mobs[i].position - entity.position;
-                    if ((entity.world.mobs[i].GetIsDead() || !entity.world.mobs[i].GetBehaviour().isEvil) && Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2) < 400)
+                    Vector2f delta = entity.World.Mobs[i].Position - entity.Position;
+                    if ((entity.World.Mobs[i].GetIsDead() || !entity.World.Mobs[i].GetBehaviour().isEvil) && Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2) < 400)
                     {
-                        entity.interaction = entity.world.mobs[i];
-                        entity.world.scene.SetConfig(Config.DrawInventWin);
+                        entity.Interaction = entity.World.Mobs[i];
+                        entity.World.Scene.SetConfig(Config.DrawInventWin);
                         return;
                     }
                 }
 
-                entity.world.scene.SetConfig(Config.DrawInventWin);
+                entity.World.Scene.SetConfig(Config.DrawInventWin);
             }
-            if (entity.world.scene.events.getButtonOfMouse(MouseEvent.ButtonLeft))
+            if (entity.World.Scene.events.getButtonOfMouse(MouseEvent.ButtonLeft))
             {
                 entity.Attack();
             }

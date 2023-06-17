@@ -11,11 +11,11 @@ namespace RPGgame.Modules.UI
 {
     internal class World
     {
-        public Scene scene { get; private set; }
-        public FloatRect[,] gridCollisions { get; private set; }
-        public Entity player { get; private set; }
-        public List<Entity> mobs { get; private set; }
-        public List<Chest> chests { get; private set; }
+        public Scene Scene { get; private set; }
+        public FloatRect[,] GridCollisions { get; private set; }
+        public Entity Player { get; private set; }
+        public List<Entity> Mobs { get; private set; }
+        public List<Chest> Chests { get; private set; }
         private Sprite background;
         private float scale; //
         private List<DynamicAmmunition> dynamicAmmunitions;
@@ -24,37 +24,20 @@ namespace RPGgame.Modules.UI
         {
             LoadWorldMap map = new LoadWorldMap("Resources\\Map");
 
-            this.scene = scene;
-            gridCollisions = map.gridCollisions;
-            player = new Entity(Behaviour.CreatNew(0), this, map.player, new Vector2f(1, 0));
-            //player.interaction = new Chest(1);
-            ////player.interaction = new Entity(Behaviour.CreatNew(0), this, new Vector2f(), new Vector2f());
-            //player.interaction.GetInventory().PutItem(new Helmet());
-            //player.interaction.GetInventory().PutItem(new Boots());  
-            //player.interaction.GetInventory().PutItem(new Key());
-            //player.interaction.GetInventory().PutItem(new Note());
+            Scene = scene;
+            GridCollisions = map.gridCollisions;
+            Player = new Entity(Behaviour.CreatNew(0), this, map.player, new Vector2f(1, 0));
 
-            //player.interaction.GetInventory().PutItem(new EndurancePotion());
-            //player.interaction.GetInventory().PutItem(new TreatmentPotion());
-            //player.interaction.GetInventory().PutItem(new ResistancePotion());
-
-            //player.interaction.GetInventory().PutItem(new FireBall());
-            //player.interaction.GetInventory().PutItem(new MagicBall());
-
-            //player.interaction.GetInventory().PutItem(new Sword());
-            //player.interaction.GetInventory().PutItem(new Axe());
-            //player.interaction.GetInventory().PutItem(new Crossbow());
-
-            mobs = new List<Entity>();
+            Mobs = new List<Entity>();
             for (int i = 0; i < map.mobs.Length; i++)
             {
-                mobs.Add(new Entity(Behaviour.CreatNew((TypeBehaviourToCreat)map.mobs[i].type), this, map.mobs[i].pos, new Vector2f(1, 0)));
+                Mobs.Add(new Entity(Behaviour.CreatNew((TypeBehaviourToCreat)map.mobs[i].type), this, map.mobs[i].pos, new Vector2f(1, 0)));
             }
 
-            chests = new List<Chest>();
+            Chests = new List<Chest>();
             for (int i = 0;i < map.chests.Length; i++)
             {
-                chests.Add(new Chest(1) { position = map.chests[i] });
+                Chests.Add(new Chest(1) { Position = map.chests[i] });
             }
 
             background = map.background;
@@ -69,9 +52,9 @@ namespace RPGgame.Modules.UI
             {
                 for (int j = (int)(hitbox.Left / scale) - 1; j < (hitbox.Left + hitbox.Width / scale) + 1; j++)
                 {
-                    if (0 <= i && i < gridCollisions.GetLength(0) &&
-                        0 <= j && j < gridCollisions.GetLength(1) &&
-                        gridCollisions[i, j].Intersects(hitbox)
+                    if (0 <= i && i < GridCollisions.GetLength(0) &&
+                        0 <= j && j < GridCollisions.GetLength(1) &&
+                        GridCollisions[i, j].Intersects(hitbox)
                     )
                     {
                         return true;
@@ -87,10 +70,10 @@ namespace RPGgame.Modules.UI
         }
         public void Update(float dTime)
         {
-            player.Update(dTime);
-            for (int i = 0; i < mobs.Count; i++)
+            Player.Update(dTime);
+            for (int i = 0; i < Mobs.Count; i++)
             {
-                mobs[i].Update(dTime);
+                Mobs[i].Update(dTime);
             }
             for (int i = 0; i < dynamicAmmunitions.Count; i++)
             {
@@ -105,15 +88,15 @@ namespace RPGgame.Modules.UI
         public void Draw(RenderWindow renderIn)
         {
             renderIn.Draw(background);
-            for (int i = 0; i < chests.Count; i++)
+            for (int i = 0; i < Chests.Count; i++)
             {
                 //chests[i].Draw(renderIn);
             }
-            for (int i = 0; i < mobs.Count; i++)
+            for (int i = 0; i < Mobs.Count; i++)
             {
-                mobs[i].Draw(renderIn);
+                Mobs[i].Draw(renderIn);
             }
-            player.Draw(renderIn);
+            Player.Draw(renderIn);
             for(int i = 0;i < dynamicAmmunitions.Count; i++)
             {
                 dynamicAmmunitions[i].Draw(renderIn);

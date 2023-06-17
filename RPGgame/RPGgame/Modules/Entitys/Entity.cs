@@ -13,18 +13,18 @@ namespace RPGgame.Modules.Entitys
 {
     internal class Entity : IInteractive, IAlive
     {
-        public World world { get; private set; }
+        public World World { get; private set; }
         private Storage inventory;
         private MainEquipments equipments;
         private Behaviour behaviour;
 
-        public Vector2f position { get; set; }
-        public Vector2f direction { get; set; }
+        public Vector2f Position { get; set; }
+        public Vector2f Direction { get; set; }
         private FloatRect hitbox;
         private Vector2f hitboxOffset; //
-        public Sprite textur { get; private set; }
+        public Sprite Textur { get; private set; }
         private List<TemporaryEffect> effects;
-        public IInteractive interaction { get; set; }
+        public IInteractive Interaction { get; set; }
 
         private int money;
         private bool onGround;
@@ -41,17 +41,17 @@ namespace RPGgame.Modules.Entitys
         {
             Characteristics ch = behaviour.GetCharacteristics();
 
-            this.world = world;
+            this.World = world;
             inventory = ch.inventory;
             equipments = ch.equipments;
             this.behaviour = behaviour;
 
-            position = pos;
-            direction = dir;
+            Position = pos;
+            Direction = dir;
             hitbox = ch.hitbox;
-            textur = ch.textur;
+            Textur = ch.textur;
             effects = new List<TemporaryEffect>();
-            interaction = null;
+            Interaction = null;
 
             money = ch.money;
             onGround = false;
@@ -60,68 +60,68 @@ namespace RPGgame.Modules.Entitys
             health = ch.maxHealth;
             endurance = ch.maxEndurance;
 
-            hitboxOffset = new Vector2f(-textur.Origin.X * textur.Scale.X, -textur.Origin.Y * textur.Scale.Y);
-            hitbox.Top = hitboxOffset.Y + position.Y;
-            hitbox.Left = hitboxOffset.X + position.X;
+            hitboxOffset = new Vector2f(-Textur.Origin.X * Textur.Scale.X, -Textur.Origin.Y * Textur.Scale.Y);
+            hitbox.Top = hitboxOffset.Y + Position.Y;
+            hitbox.Left = hitboxOffset.X + Position.X;
 
             weaponTextur = new Sprite();
             weaponTextur.Origin = new Vector2f(16, 16);
 
-            textur.Scale = new Vector2f(((direction.X > 0) ? 1 : -1) * Math.Abs(textur.Scale.X), textur.Scale.Y);
-            weaponTextur.Scale = new Vector2f(((direction.X > 0) ? -1 : 1) * Math.Abs(weaponTextur.Scale.X), weaponTextur.Scale.Y);
-            direction = new Vector2f((direction.X > 0) ? 1.0f : -1.0f, 0.0f);
+            Textur.Scale = new Vector2f(((Direction.X > 0) ? 1 : -1) * Math.Abs(Textur.Scale.X), Textur.Scale.Y);
+            weaponTextur.Scale = new Vector2f(((Direction.X > 0) ? -1 : 1) * Math.Abs(weaponTextur.Scale.X), weaponTextur.Scale.Y);
+            Direction = new Vector2f((Direction.X > 0) ? 1.0f : -1.0f, 0.0f);
 
             timerEndurance = 0;
             timerEffects = 0;
         }
         public void Draw(RenderWindow renderIn)
         {
-            renderIn.Draw(textur);
+            renderIn.Draw(Textur);
 
             if (equipments.GetWeapon() != null && !(equipments.GetWeapon() is FireRing) && !(equipments.GetWeapon() is MagicRing))
             {
                 weaponTextur.Texture = equipments.GetWeapon().Textur.Texture;
-                weaponTextur.Position = position;
+                weaponTextur.Position = Position;
                 renderIn.Draw(weaponTextur);
             }
         }
         public void DeleteInteraction()
         {
-            interaction = null;
+            Interaction = null;
         }
         public void Move(float dTime, Vector2f dVector)
         { 
-            textur.Scale = new Vector2f(((dVector.X > 0) ? 1 : -1) * Math.Abs(textur.Scale.X), textur.Scale.Y);
+            Textur.Scale = new Vector2f(((dVector.X > 0) ? 1 : -1) * Math.Abs(Textur.Scale.X), Textur.Scale.Y);
             weaponTextur.Scale = new Vector2f(((dVector.X > 0) ? -1 : 1) * Math.Abs(weaponTextur.Scale.X), weaponTextur.Scale.Y);
-            direction = new Vector2f((dVector.X > 0) ? 1.0f : -1.0f, 0.0f);
+            Direction = new Vector2f((dVector.X > 0) ? 1.0f : -1.0f, 0.0f);
 
-            position += dVector * speed * dTime;
-            hitbox.Top = hitboxOffset.Y + position.Y;
-            hitbox.Left = hitboxOffset.X + position.X;
+            Position += dVector * speed * dTime;
+            hitbox.Top = hitboxOffset.Y + Position.Y;
+            hitbox.Left = hitboxOffset.X + Position.X;
 
-            if (world.CheckIntersection(hitbox))
+            if (World.CheckIntersection(hitbox))
             {
-                hitbox.Top = hitboxOffset.Y + position.Y - 12.0f;
-                if (!world.CheckIntersection(hitbox))
+                hitbox.Top = hitboxOffset.Y + Position.Y - 12.0f;
+                if (!World.CheckIntersection(hitbox))
                 {
                     onGround = false;
-                    hitbox.Top = hitboxOffset.Y + position.Y;
+                    hitbox.Top = hitboxOffset.Y + Position.Y;
                 }
                 else
                 {
-                    position -= dVector * speed * dTime;
-                    hitbox.Top = hitboxOffset.Y + position.Y;
-                    hitbox.Left = hitboxOffset.X + position.X;
+                    Position -= dVector * speed * dTime;
+                    hitbox.Top = hitboxOffset.Y + Position.Y;
+                    hitbox.Left = hitboxOffset.X + Position.X;
                 }
             }
             else
             {
-                hitbox.Top = hitboxOffset.Y + position.Y + 1.0f;
-                if (!world.CheckIntersection(hitbox))
+                hitbox.Top = hitboxOffset.Y + Position.Y + 1.0f;
+                if (!World.CheckIntersection(hitbox))
                 {
                     onGround = false;
                 }
-                hitbox.Top = hitboxOffset.Y + position.Y;
+                hitbox.Top = hitboxOffset.Y + Position.Y;
             }
         }
         public void Update(float dTime)
@@ -132,22 +132,22 @@ namespace RPGgame.Modules.Entitys
 
                 if (!onGround)
                 {
-                    position += new Vector2f(0.0f, 200.0f * dTime);
-                    if (world.CheckIntersection(hitbox))
+                    Position += new Vector2f(0.0f, 200.0f * dTime);
+                    if (World.CheckIntersection(hitbox))
                     {
                         onGround = true;
-                        while (world.CheckIntersection(hitbox))
+                        while (World.CheckIntersection(hitbox))
                         {
-                            position -= new Vector2f(0.0f, 0.1f);
-                            hitbox.Top = hitboxOffset.Y + position.Y;
-                            hitbox.Left = hitboxOffset.X + position.X;
+                            Position -= new Vector2f(0.0f, 0.1f);
+                            hitbox.Top = hitboxOffset.Y + Position.Y;
+                            hitbox.Left = hitboxOffset.X + Position.X;
                         }
                     }
                 }
 
-                hitbox.Top = hitboxOffset.Y + position.Y;
-                hitbox.Left = hitboxOffset.X + position.X;
-                textur.Position = position;
+                hitbox.Top = hitboxOffset.Y + Position.Y;
+                hitbox.Left = hitboxOffset.X + Position.X;
+                Textur.Position = Position;
 
                 timerEffects += dTime;
                 if(timerEffects > 1)
@@ -220,9 +220,9 @@ namespace RPGgame.Modules.Entitys
             {
                 isDead = true;
                 health = 0;
-                textur.Rotation = 90.0f;
-                textur.Scale = new Vector2f(-Math.Abs(textur.Scale.X), textur.Scale.Y);
-                textur.Origin = new Vector2f(55, 20);
+                Textur.Rotation = 90.0f;
+                Textur.Scale = new Vector2f(-Math.Abs(Textur.Scale.X), Textur.Scale.Y);
+                Textur.Origin = new Vector2f(55, 20);
                 GetInventory().PutItem(GetMainEquipments().PopWeapon());
             }
         }

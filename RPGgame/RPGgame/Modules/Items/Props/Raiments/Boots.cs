@@ -4,15 +4,12 @@ using System.Collections.Generic;
 
 namespace RPGgame.Modules.Items.Props
 {
-    internal class Boots: Clothes
+    internal class Boots : Clothes
     {
-        public Boots() : base("Resources\\EntitySprites\\Boots.png", new List<Effect>()) 
+        public Boots() : base("Resources\\EntitySprites\\Boots.png", new List<Effect>())
         {
             Effects.Add(
-                    new ResistanceM()
-                    {
-                        EffectValue = 15,
-                    }
+                    new ResistanceM() { EffectValue = 15 }
                 );
         }
 

@@ -9,10 +9,7 @@ namespace RPGgame.Modules.Items.Props
 {
     internal class MeleeWeapons : Weapon
     {
-        public MeleeWeapons(string path, List<Effect> effect) : base(path, effect) 
-        { 
-            
-        }
+        public MeleeWeapons(string path, List<Effect> effect) : base(path, effect) { }
 
         public float DistanceOfAttack { get; set; }
 
@@ -27,30 +24,30 @@ namespace RPGgame.Modules.Items.Props
             Time.Restart();
             entity.ReduceEndurance((uint)AttackPower);
 
-            Vector2f delta = entity.world.player.position - entity.position;
+            Vector2f delta = entity.World.Player.Position - entity.Position;
             if (Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2) < DistanceOfAttack * DistanceOfAttack
-               && entity != entity.world.player && delta.X * entity.direction.X > 0)
+               && entity != entity.World.Player && delta.X * entity.Direction.X > 0)
             {
                 for (int j = 0; j < Effects.Count; j++)
                 {
-                    Effects[j].Employ(entity.world.player);
+                    Effects[j].Employ(entity.World.Player);
                 }
             }
 
-            for (int i = 0; i < entity.world.mobs.Count; i++)
+            for (int i = 0; i < entity.World.Mobs.Count; i++)
             {
-                if(entity.world.mobs[i].GetIsDead() || Behaviour.Compare(entity.world.mobs[i].GetBehaviour(), entity.GetBehaviour()))
+                if(entity.World.Mobs[i].GetIsDead() || Behaviour.Compare(entity.World.Mobs[i].GetBehaviour(), entity.GetBehaviour()))
                 {
                     continue;
                 }
 
-                delta = entity.world.mobs[i].position - entity.position;
+                delta = entity.World.Mobs[i].Position - entity.Position;
                 if (Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2) < DistanceOfAttack * DistanceOfAttack
-                && entity != entity.world.mobs[i] && delta.X * entity.direction.X > 0)
+                && entity != entity.World.Mobs[i] && delta.X * entity.Direction.X > 0)
                 {
                     for(int j = 0; j < Effects.Count; j++)
                     {
-                        Effects[j].Employ(entity.world.mobs[i]);
+                        Effects[j].Employ(entity.World.Mobs[i]);
                     }
                 }
             }

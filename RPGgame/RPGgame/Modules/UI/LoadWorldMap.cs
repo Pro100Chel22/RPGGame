@@ -8,7 +8,7 @@ namespace RPGgame.Modules.UI
 {
     internal class LoadWorldMap
     {
-        public float scale = 6.0f;
+        public float scale { get; private set; }
         public FloatRect[,] gridCollisions { get; private set; }
         public ConfigMob[] mobs { get; private set; }
         public Vector2f[] chests { get; private set; }
@@ -17,6 +17,8 @@ namespace RPGgame.Modules.UI
 
         public LoadWorldMap(string path)
         {
+            scale = 6.0f;
+
             LoadPositionsOfGameObjects(path);
             LoadGridCollisions(path);
 

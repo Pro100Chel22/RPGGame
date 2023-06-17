@@ -31,13 +31,13 @@ namespace RPGgame.Modules.Items
     {
         public Vector2f Position { get; set; }
         public Sprite Textur { get; set; }
-        public float scale = 1.0f;
+        private float scale = 1.0f;
 
-        public int CostCoefficient { get; set; }
-        public int Rarity { get; set; }
-        public string Description { get; set; }
-        public string Type { get; set; }
-        public int Id { get; set; }
+        public int CostCoefficient { get; private set; }
+        public int Rarity { get; private set; }
+        public string Description { get; private set; }
+        public string Type { get; private set; }
+        public int Id { get; private set; }
 
         public Item(string pathToTextur)
         {

@@ -12,9 +12,6 @@ namespace RPGgame.Modules.Items.Effects
         {
             throw new Exception("Employ недоступен, так как функция не реализована");
         }
-        public virtual void Delete(IAlive Alive)
-        {
-            
-        }
+        public virtual void Delete(IAlive Alive) { }
     }
 }

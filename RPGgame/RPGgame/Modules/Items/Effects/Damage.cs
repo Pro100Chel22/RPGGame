@@ -13,9 +13,6 @@ namespace RPGgame.Modules.Items.Effects
         {
             Alive.DealDamage(EffectValue);
         }
-        public override void Delete(IAlive Alive)
-        {
-            
-        }
+  
     }
 }

@@ -1,11 +1,8 @@
-﻿using RPGgame.Modules.Entitys;
+﻿
+using RPGgame.Modules.Entitys;
 using RPGgame.Modules.Items.Effects;
 using SFML.System;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGgame.Modules.Items.Props.Weapons
 {
@@ -29,7 +26,7 @@ namespace RPGgame.Modules.Items.Props.Weapons
             Time.Restart();
             entity.ReduceEndurance((uint)AttackPower);
 
-            entity.world.AddDynamicAmmunition(new FireBall() { Position = entity.position + new Vector2f(0, 15.0f), Direction = entity.direction, Owner = entity });
+            entity.World.AddDynamicAmmunition(new FireBall() { Position = entity.Position + new Vector2f(0, 15.0f), Direction = entity.Direction, Owner = entity });
         }
     }
 }
