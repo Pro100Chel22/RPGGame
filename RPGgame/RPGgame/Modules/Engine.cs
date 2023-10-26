@@ -20,6 +20,7 @@ namespace RPGgame
             scene = new Scene(win, engineEvents); 
             win.Closed += (object obj, EventArgs e) => win.Close();
 
+
             win.SetVerticalSyncEnabled(true);      
         }
 
